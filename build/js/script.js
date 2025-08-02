@@ -187,11 +187,13 @@ function openMenu() {
   mobileMenu.classList.add('active');
   overlay.classList.add('active');
   burger.classList.add('open');
+  document.body.classList.add('scroll-lock');
 }
 function closeMenuFunc() {
   mobileMenu.classList.remove('active');
   overlay.classList.remove('active');
   burger.classList.remove('open');
+  document.body.classList.remove('scroll-lock');
 }
 burger.addEventListener('click', openMenu);
 closeMenu.addEventListener('click', closeMenuFunc);
