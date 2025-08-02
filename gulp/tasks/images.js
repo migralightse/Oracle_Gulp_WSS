@@ -36,7 +36,7 @@ gulp.task('images', (done) => {
 			)
 			.pipe(size({ showFiles: true }))
 			.pipe(gulp.dest(config.dest.img))
-			.pipe(gulp.dest(config.theme.assets));
+			// .pipe(gulp.dest(config.theme.assets));
 			done()
 	} catch (e) {
 		console.log(e);

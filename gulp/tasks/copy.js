@@ -26,7 +26,7 @@ gulp.task( 'copy', (done) => {
 	// copy all files from /src/video directory
 	gulp.src( config.src.root + 'video/*.*' )
 		.pipe( newer( config.dest.root + 'video/' ) )
-		.pipe( newer( config.theme.assets) )
+		// .pipe( newer( config.theme.assets) )
 		.pipe( gulp.dest( config.dest.root + 'video/' ) );
 	done()
 });

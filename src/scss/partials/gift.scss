@@ -12,7 +12,7 @@
 			.gift_items__image__mod {
 				width: 753px;
 				height: 493px;
-				background-image: url('../../img/gift1_fon.jpg');
+				background-image: url('../img/gift1_fon_img.jpg');
 				background-size: cover;
 				background-position: center;
 
@@ -333,6 +333,13 @@
 		padding: 14px 15px;
 	}
 
+}
+
+
+@media (max-width: 768px) {
+	.new_collection_banner .container .new_collection_banner__title {
+		font-size: 32px !important;
+	}
 }
 
 

@@ -37,8 +37,8 @@ gulp.task( 'html', (done) => {
 		.pipe(mode.production(htmlmin(htmlminOptions)))
 		.pipe(mode.production(cachebust(cachebustOptions)))
 		.pipe(mode.production(formatHtml()))
-		.pipe(rename({ extname: '.liquid' }))
-		.pipe(gulp.dest( config.theme.sections ))
+		// .pipe(rename({ extname: '.liquid' }))
+		// .pipe(gulp.dest( config.theme.sections ))
 		.pipe(browserSync.stream());
 
 	gulp.src( config.src.snippets + '*.html')
@@ -46,8 +46,8 @@ gulp.task( 'html', (done) => {
 		.pipe(mode.production(htmlmin(htmlminOptions)))
 		.pipe(mode.production(cachebust(cachebustOptions)))
 		.pipe(mode.production(formatHtml()))
-		.pipe(rename({ extname: '.liquid' }))
-		.pipe(gulp.dest( config.theme.snippets ))
+		// .pipe(rename({ extname: '.liquid' }))
+		// .pipe(gulp.dest( config.theme.snippets ))
 		.pipe(browserSync.stream());
 
     done()
