@@ -1,37 +1,54 @@
 ////////////////////////////scroll////////////////////
-window.addEventListener("scroll", function () {
-	if (!document.body.classList.contains("white_header")) {
-		const moveThreshold = 48;
-		const styleThreshold = 450;
+window.addEventListener("DOMContentLoaded", function () {
+	// Якщо на сторінці є секція catalog_main — додаємо клас
+	if (document.querySelector('.catalog_main')) {
+		document.body.classList.add('white_header');
+	}
 
-		const navLinks = document.querySelectorAll(".header_nav .nav__list li > a");
-		const mob_navLinks = document.querySelectorAll(".header_nav .mobile_nav_list > a");
-		const headerBottom = document.querySelector(".header__bottom");
-		const headerLogo = document.querySelector(".header_logo");
-		const burger_logo = document.querySelectorAll(".burger-menu .bar");
+	const navLinks = document.querySelectorAll(".header_nav .nav__list li > a");
+	const mob_navLinks = document.querySelectorAll(".header_nav .mobile_nav_list > a");
+	const headerBottom = document.querySelector(".header__bottom");
+	const headerLogo = document.querySelector(".header_logo");
+	const burger_logo = document.querySelectorAll(".burger-menu .bar");
 
+	const applyScrolledClasses = () => {
+		navLinks.forEach(el => el.classList.add("scrolled"));
+		mob_navLinks.forEach(el => el.classList.add("scrolled"));
+		burger_logo.forEach(el => el.classList.add("scrolled"));
+		headerLogo?.classList.add("scrolled");
+		headerBottom?.classList.add("scrolled");
+	};
 
-		// Зміщення header__bottom при 48px
-		if (window.scrollY > moveThreshold) {
-			headerBottom?.classList.add("scrolled_top");
-		} else {
-			headerBottom?.classList.remove("scrolled_top");
-		}
+	const removeScrolledClasses = () => {
+		navLinks.forEach(el => el.classList.remove("scrolled"));
+		mob_navLinks.forEach(el => el.classList.remove("scrolled"));
+		burger_logo.forEach(el => el.classList.remove("scrolled"));
+		headerLogo?.classList.remove("scrolled");
+		headerBottom?.classList.remove("scrolled");
+	};
 
-		// Стилізація інших елементів при 450px
-		if (window.scrollY > styleThreshold) {
-			navLinks.forEach(el => el.classList.add("scrolled"));
-			mob_navLinks.forEach(el => el.classList.add("scrolled"));
-			burger_logo.forEach(el => el.classList.add("scrolled"));
-			headerLogo?.classList.add("scrolled");
-			headerBottom?.classList.add("scrolled");
-		} else {
-			navLinks.forEach(el => el.classList.remove("scrolled"));
-			mob_navLinks.forEach(el => el.classList.remove("scrolled")); // ← Виправлено
-			burger_logo.forEach(el => el.classList.remove("scrolled")); // ← Виправлено
-			headerLogo?.classList.remove("scrolled");
-			headerBottom?.classList.remove("scrolled");
-		}
+	if (document.body.classList.contains("white_header")) {
+		// Каталог — одразу білий хедер
+		headerBottom?.classList.add("scrolled_top");
+		applyScrolledClasses();
+	} else {
+		// Головна — тільки при скролі
+		window.addEventListener("scroll", function () {
+			const moveThreshold = 48;
+			const styleThreshold = 450;
+
+			if (window.scrollY > moveThreshold) {
+				headerBottom?.classList.add("scrolled_top");
+			} else {
+				headerBottom?.classList.remove("scrolled_top");
+			}
+
+			if (window.scrollY > styleThreshold) {
+				applyScrolledClasses();
+			} else {
+				removeScrolledClasses();
+			}
+		});
 	}
 });
 
@@ -146,13 +163,15 @@ navLinks.forEach(link => {
 	});
 });
 
-
-
-
 // При виході мишки з усього хедера — ховаємо меню і прибираємо класи
 document.querySelector('.header').addEventListener('mouseleave', () => {
 	submenu.classList.remove('visible');
 	document.body.style.overflow = '';
+
+	// Не знімати класи, якщо хедер повинен залишатися білим
+	if (document.body.classList.contains('white_header')) {
+		return;
+	}
 
 	// Перевірка чи сторінка нижче styleThreshold
 	const styleThreshold = 450;
@@ -164,7 +183,6 @@ document.querySelector('.header').addEventListener('mouseleave', () => {
 		navLinks.forEach(link => link.classList.remove('scrolled'));
 	}
 });
-
 
 
 
@@ -213,7 +231,7 @@ window.addEventListener('load', () => {
 
 
 
-/////////////////////////////////////////////////////////
+//////////////////////mobile_burger_menu///////////////////////////////////
 const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 const closeMenu = document.getElementById('closeMenu');
@@ -237,3 +255,22 @@ burger.addEventListener('click', openMenu);
 closeMenu.addEventListener('click', closeMenuFunc);
 overlay.addEventListener('click', closeMenuFunc);
 
+
+
+
+/////////////////////////catalog_main//////////////
+document.querySelectorAll('.filter__material').forEach(material => {
+	const title = material.querySelector('.material_title');
+	const menu = material.querySelector('.material_menu');
+	const arrow = material.querySelector('.material_arrow');
+	const h2 = title.querySelector('h2');
+
+	const toggleMenu = () => {
+		menu.classList.toggle('active');
+		arrow.classList.toggle('active');
+	};
+
+	// Вішаємо події тільки на h2 і стрілку
+	h2.addEventListener('click', toggleMenu);
+	arrow.addEventListener('click', toggleMenu);
+});
