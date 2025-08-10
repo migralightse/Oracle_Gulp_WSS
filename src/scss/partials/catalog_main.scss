@@ -5,9 +5,32 @@
 		padding: 140px 0 120px 0;
 		display: flex;
 		justify-content: center;
+		gap: 60px;
+
+		.filters_wrapper {
+			position: relative;
+			width: 324px; // або стільки ж, скільки у filters_items
+			flex-shrink: 0; // щоб не стискався
+		}
+
 
 		.filters_items {
 			width: 324px;
+			transition: all 0.5s ease-in-out;
+			overflow-y: auto;
+			max-height: calc(100vh - 160px);
+			scrollbar-width: none; /* Firefox */
+			-ms-overflow-style: none; /* IE 10+ */
+
+			.filters_items::-webkit-scrollbar {
+				display: none; /* Chrome/Safari */
+			}
+
+
+			&.filters-sticky {
+				position: fixed;
+				top: 140px;
+			}
 		}
 
 		.filter__title {
@@ -86,7 +109,7 @@
 					cursor: pointer;
 					transition: transform 0.3s ease-in-out;
 
-					&.active{
+					&.active {
 						transform: rotate(180deg);
 					}
 
@@ -102,7 +125,6 @@
 				overflow: hidden;
 				transition: max-height 0.4s ease-in-out;
 				$checkmark-svg: '%3Csvg%20width%3D%2214%22%20height%3D%2210%22%20viewBox%3D%220%200%2014%2010%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M13.2803%200.71967C13.5732%201.01256%2013.5732%201.48744%2013.2803%201.78033L5.28033%209.78033C4.98744%2010.0732%204.51256%2010.0732%204.21967%209.78033L0.21967%205.78033C-0.0732233%205.48744%20-0.0732233%205.01256%200.21967%204.71967C0.512563%204.42678%200.987437%204.42678%201.28033%204.71967L4.75%208.18934L12.2197%200.71967C12.5126%200.426777%2012.9874%200.426777%2013.2803%200.71967Z%22%20fill%3D%22black%22/%3E%3C/svg%3E';
-
 
 
 				&.active {
@@ -157,6 +179,7 @@
 						line-height: 22px; /* 157.143% */
 					}
 				}
+
 				.material_arrow svg {
 					transition: transform 0.3s ease;
 				}
@@ -178,6 +201,64 @@
 			margin: 20px 0;
 		}
 
+		.shop-now__filters {
+			width: 100%;
+			color: var(--White, #FFF);
+			text-align: center;
+			font-family: 'Poppins', sans-serif;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 24px; /* 150% */
+			letter-spacing: 0.32px;
+			padding: 20px 0;
+			margin-top: 41.5px;
+		}
+
+
+		.items_block {
+
+
+			.sort {
+				display: flex;
+				justify-content: end;
+				gap: 40px;
+				align-items: center;
+
+				.list_cube {
+					display: flex;
+					gap: 20px;
+				}
+			}
+
+			.sort_menu {
+				.select2-container--default .select2-selection--single .select2-selection__rendered {
+					color: #6E7172;
+					font-family: 'Poppins', sans-serif;
+					font-size: 16px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 24px; /* 150% */
+				}
+
+				.select2-container {
+					width: 246px;
+				}
+
+				.select2-container .select2-selection--single .select2-selection__rendered {
+					padding-left: 0;
+				}
+			}
+
+			.items_block_pagination {
+				gap: 40px;
+				margin-top: 30px;
+			}
+
+
+
+
+		}
 
 
 	}

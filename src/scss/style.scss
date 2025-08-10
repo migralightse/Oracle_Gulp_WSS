@@ -18,6 +18,8 @@
 @import "partials/gift";
 @import "partials/select2";
 @import "partials/catalog_main";
+@import "partials/noUiSlider";
+@import "partials/newsletter_catalog";
 
 
 
@@ -106,5 +108,131 @@ a{
 	&:hover {
 		opacity: 0.7;
 	}
+}
+
+
+
+////////////////button////////////////////////
+.gift_items__button{
+	display: flex;
+	justify-content: start;
+}
+
+.gift_items__button .shop-now{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Poppins",sans-serif;
+	font-size: 14px;
+	background: #000;
+	color: #fff;
+	padding: 20px 91px 22px 79px;
+	cursor: pointer;
+	border: 2px solid rgba(0,0,0,0);
+	transition: all .5s ease-in-out;
+	text-decoration: none;
+
+	&:hover {
+		//background: transparent;
+		color: #000000;
+		border: 2px solid #000000;
+		background: rgba(255, 255, 255, 0.2); // прозорий білий фон
+		backdrop-filter: blur(10px); // саме розмиття
+		-webkit-backdrop-filter: blur(10px); // для Safari
+	}
+}
+
+
+
+//////////////////show_more////////////////////
+.items_button {
+	display: flex;
+	justify-content: center;
+	background: inherit;
+	border: none;
+	height: auto;
+	width: auto;
+	padding: 0 0 0 0;
+	margin-top: 20px;
+}
+
+.button_show {
+	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Poppins", sans-serif;
+	color: var(--Black-Primary, #000);
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 26px;
+	letter-spacing: 1.08px;
+	text-transform: uppercase;
+	cursor: pointer;
+	border: 1px solid #fff;
+	background-color: #fff;
+	text-decoration: none;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -1px; // на 4px нижче тексту
+		width: 100%;
+		height: 1px;
+		background-color: var(--Black-Primary, #000);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	&:hover::after {
+		transform: scaleX(1);
+	}
+	&:hover{
+		opacity: 1;
+	}
+}
+
+
+///////////paginations//////////////////
+
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 80px;
+}
+
+.page-btn {
+	padding: 10px 17px 8px 17px;
+	border: 1px solid var(--Light-Colors-Gray---Light, #D8D8D8);
+	background: #fff;
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 22px; /* 157.143% */
+	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+
+	&:hover {
+		color: #000000;
+		border: 1px solid #000000;
+		background: rgba(255, 255, 255, 0.2); // прозорий білий фон
+		backdrop-filter: blur(10px); // саме розмиття
+		-webkit-backdrop-filter: blur(10px); // для Safari
+	}
+}
+
+.page-btn.active {
+	background: #000;
+	color: var(--Light-Colors-White---Light, #FFF);
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 22px; /* 157.143% */
 }
 

@@ -1,4 +1,5 @@
 <div class="container">
+	<div class="filters_wrapper">
 	<div class="filters_items">
 		<div class="filter__title">
 			Rings
@@ -113,20 +114,84 @@
 				</button>
 			</div>
 			<div class="material_menu">
-				<label class="custom-checkbox">
-					<input type="checkbox" />
-					<span class="checkmark"></span>
-					<h2 class="custom-checkbox_title">In Stock</h2>
-				</label>
-				<label class="custom-checkbox">
-					<input type="checkbox" />
-					<span class="checkmark"></span>
-					<h2 class="custom-checkbox_title">Out of Stock</h2>
-				</label>
+				<div class="price-filter">
+					<div id="price-slider"></div>
+					<div class="price-values">
+						Price: $<span id="price-lower">40</span> - $<span id="price-upper">180</span>
+					</div>
+				</div>
 			</div>
 		</div>
 
+		<div class="gift_items__button">
+			<a href="#" class="shop-now shop-now__filters">Filter</a>
+		</div>
+
+		<button class="items_button">
+			<a class="button_show" href="#">
+				clear filter
+			</a>
+		</button>
 	</div>
-	<div class="items_block"> fmkfvmm</div>
+	</div>
+	<div class="items_block catalog-limit">
+		<div class="sort">
+			<div class="sort_menu">
+				<select class="gift-select js-select2">
+					<option value="100">15</option>
+					<option value="150">15.5</option>
+					<option value="200">16</option>
+					<option value="300">16.5</option>
+				</select>
+			</div>
+			<div class="list_cube">
+				<a href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M20.4998 12.9165H12.9165V20.4998H20.4998V12.9165Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M8.58333 12.9165H1V20.4998H8.58333V12.9165Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M20.4998 1H12.9165V8.58333H20.4998V1Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M8.58333 1H1V8.58333H8.58333V1Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg></a>
+				<a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="path-1-inside-1_7917_11087" fill="white">
+						<rect y="10.75" width="20" height="8.5" rx="1"/>
+					</mask>
+					<rect y="10.75" width="20" height="8.5" rx="1" stroke="#999999" stroke-width="3" mask="url(#path-1-inside-1_7917_11087)"/>
+					<mask id="path-2-inside-2_7917_11087" fill="white">
+						<rect width="20" height="8.5" rx="1"/>
+					</mask>
+					<rect width="20" height="8.5" rx="1" stroke="#999999" stroke-width="3" mask="url(#path-2-inside-2_7917_11087)"/>
+				</svg></a>
+
+
+			</div>
+
+		</div>
+
+		<div class="items_block_pagination">
+			@@include('../partials/items_card.html')
+			@@include('../partials/items_card_rings.html')
+			@@include('../partials/items_card_rings.html')
+		</div>
+
+		<div class="items_block_pagination">
+			@@include('../partials/items_card_rings.html')
+			@@include('../partials/items_card.html')
+			@@include('../partials/items_card_rings.html')
+		</div>
+
+		<div class="items_block_pagination">
+			@@include('../partials/items_card_rings.html')
+			@@include('../partials/items_card.html')
+			@@include('../partials/items_card.html')
+		</div>
+
+		<div class="pagination">
+			<button class="page-btn active" data-page="1">1</button>
+			<button class="page-btn" data-page="2">2</button>
+			<button class="page-btn" data-page="3">3</button>
+			<!-- можна додати ще -->
+		</div>
+
+	</div>
 </div>
 

@@ -20,19 +20,21 @@
 <!-- Скрипт Swiper -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- Твій основний скрипт -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
+
 
 
 
 </head>
-<body>
+<body  class="catalog-page">
 <!-- BEGIN  wrapper-->
 <div class="wrapper">
+	
+<header class="header">
 	<div class="header__top">
 	<p class="header__note">Free worldwide shipping for orders over $200</p>
 </div>
 
-<header class="header">
 	<div class="container header__inner">
 
 		<div class="header__bottom">
@@ -49,27 +51,12 @@
 				<button class="btn-close" id="closeMenu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
 				</svg></button>
-				<ul>
-					<li class="li_span"><a href="#">Jewelry</a>
-						<a>
-						<span><svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0.0914741 1.15274C0.0329301 1.09641 0 1.01975 0 0.939769C0 0.859789 0.0329301 0.783122 0.0914741 0.726801L0.747073 0.0908974C0.80319 0.0328999 0.881541 0 0.963544 0C1.04555 0 1.1239 0.0328999 1.18002 0.0908974L6.86393 5.60406C6.95095 5.68836 6.99989 5.80272 7 5.92201V6.07799C6.99989 6.19728 6.95095 6.31164 6.86393 6.39594L1.18002 11.9091C1.1239 11.9671 1.04555 12 0.963544 12C0.881541 12 0.80319 11.9671 0.747073 11.9091L0.0914741 11.2732C0.0329301 11.2169 0 11.1402 0 11.0602C0 10.9803 0.0329301 10.9036 0.0914741 10.8473L5.08887 6L0.0914741 1.15274Z" fill="black"/>
-</svg></span>
-						</a>
-					</li>
-					<li class="li_span"><a href="#">Collections</a>
-						<a>
-						<span><svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0.0914741 1.15274C0.0329301 1.09641 0 1.01975 0 0.939769C0 0.859789 0.0329301 0.783122 0.0914741 0.726801L0.747073 0.0908974C0.80319 0.0328999 0.881541 0 0.963544 0C1.04555 0 1.1239 0.0328999 1.18002 0.0908974L6.86393 5.60406C6.95095 5.68836 6.99989 5.80272 7 5.92201V6.07799C6.99989 6.19728 6.95095 6.31164 6.86393 6.39594L1.18002 11.9091C1.1239 11.9671 1.04555 12 0.963544 12C0.881541 12 0.80319 11.9671 0.747073 11.9091L0.0914741 11.2732C0.0329301 11.2169 0 11.1402 0 11.0602C0 10.9803 0.0329301 10.9036 0.0914741 10.8473L5.08887 6L0.0914741 1.15274Z" fill="black"/>
-</svg></span>
-						</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Contacts</a></li>
+				<ul class="mobile-menu__list" id="mobileMenuList">
+					<!-- JavaScript -->
 				</ul>
 			</div>
 
 			<div class="account">
-
 				<a href="#"><span><svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="8.57897" cy="6.27803" r="4.77803" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path fill-rule="evenodd" clip-rule="evenodd" d="M1.00002 17.7013C0.998732 17.3654 1.07385 17.0336 1.2197 16.7311C1.67736 15.8157 2.96798 15.3306 4.03892 15.1109C4.81128 14.9461 5.59431 14.836 6.38217 14.7814C7.84084 14.6533 9.30793 14.6533 10.7666 14.7814C11.5544 14.8366 12.3374 14.9467 13.1099 15.1109C14.1808 15.3306 15.4714 15.77 15.9291 16.7311C16.2224 17.3479 16.2224 18.0639 15.9291 18.6807C15.4714 19.6418 14.1808 20.0812 13.1099 20.2917C12.3384 20.4633 11.5551 20.5766 10.7666 20.6304C9.57937 20.731 8.38659 20.7494 7.19681 20.6853C6.92221 20.6853 6.65677 20.6853 6.38217 20.6304C5.59663 20.5772 4.81632 20.464 4.04807 20.2917C2.96798 20.0812 1.68652 19.6418 1.2197 18.6807C1.0746 18.3746 0.999552 18.04 1.00002 17.7013Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,10 +72,10 @@
 		</div>
 		<nav class="header_nav">
 			<ul class="nav__list">
-				<li><a href="#" class="nav-item" data-menu="jewelry">Jewelry</a></li>
-				<li><a href="#" class="nav-item" data-menu="collections">Collections</a></li>
-				<li><a href="#" class="nav-item" data-menu="Blog">Blog</a></li>
-				<li><a href="#" class="nav-item" data-menu="Contacts">Contacts</a></li>
+				<li data-menu="jewelry"><a href="#" class="nav-item" data-menu="jewelry">Jewelry</a></li>
+				<li data-menu="collections"><a href="#" class="nav-item" data-menu="collections">Collections test</a></li>
+				<li data-menu="Blog"><a href="#" class="nav-item" data-menu="Blog">Blog</a></li>
+				<li data-menu="Contacts"><a href="#" class="nav-item" data-menu="Contacts">Contacts</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -116,7 +103,7 @@
 							  stroke-linecap="round" stroke-linejoin="round"/>
 					</svg>
 				</a>
-					<a class="nav_link" data-menu="Search" href="#">Search</a></li>
+					<a class="nav_link"  href="#">Search</a></li>
 				<li>
 					<a class="nav_link">
 						<svg width="15" height="17" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,7 +114,7 @@
 								  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</a>
-					<a class="nav_link" data-menu="Account" href="#">Account</a></li>
+					<a class="nav_link" href="#">Account</a></li>
 				<li>
 					<a class="nav_link">
 						<svg width="15" height="16" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +126,7 @@
 								  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</a>
-					<a class="nav_link" data-menu="Cart" href="#">Cart (2)</a></li>
+					<a class="nav_link" href="#">Cart (2)</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -366,6 +353,7 @@
 
 	<main class="catalog_main">
 		<div class="container">
+	<div class="filters_wrapper">
 	<div class="filters_items">
 		<div class="filter__title">
 			Rings
@@ -480,25 +468,515 @@
 				</button>
 			</div>
 			<div class="material_menu">
-				<label class="custom-checkbox">
-					<input type="checkbox" />
-					<span class="checkmark"></span>
-					<h2 class="custom-checkbox_title">In Stock</h2>
-				</label>
-				<label class="custom-checkbox">
-					<input type="checkbox" />
-					<span class="checkmark"></span>
-					<h2 class="custom-checkbox_title">Out of Stock</h2>
-				</label>
+				<div class="price-filter">
+					<div id="price-slider"></div>
+					<div class="price-values">
+						Price: $<span id="price-lower">40</span> - $<span id="price-upper">180</span>
+					</div>
+				</div>
 			</div>
 		</div>
 
+		<div class="gift_items__button">
+			<a href="#" class="shop-now shop-now__filters">Filter</a>
+		</div>
+
+		<button class="items_button">
+			<a class="button_show" href="#">
+				clear filter
+			</a>
+		</button>
 	</div>
-	<div class="items_block"> fmkfvmm</div>
+	</div>
+	<div class="items_block catalog-limit">
+		<div class="sort">
+			<div class="sort_menu">
+				<select class="gift-select js-select2">
+					<option value="100">15</option>
+					<option value="150">15.5</option>
+					<option value="200">16</option>
+					<option value="300">16.5</option>
+				</select>
+			</div>
+			<div class="list_cube">
+				<a href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M20.4998 12.9165H12.9165V20.4998H20.4998V12.9165Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M8.58333 12.9165H1V20.4998H8.58333V12.9165Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M20.4998 1H12.9165V8.58333H20.4998V1Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M8.58333 1H1V8.58333H8.58333V1Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg></a>
+				<a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<mask id="path-1-inside-1_7917_11087" fill="white">
+						<rect y="10.75" width="20" height="8.5" rx="1"/>
+					</mask>
+					<rect y="10.75" width="20" height="8.5" rx="1" stroke="#999999" stroke-width="3" mask="url(#path-1-inside-1_7917_11087)"/>
+					<mask id="path-2-inside-2_7917_11087" fill="white">
+						<rect width="20" height="8.5" rx="1"/>
+					</mask>
+					<rect width="20" height="8.5" rx="1" stroke="#999999" stroke-width="3" mask="url(#path-2-inside-2_7917_11087)"/>
+				</svg></a>
+
+
+			</div>
+
+		</div>
+
+		<div class="items_block_pagination">
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item1.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item3.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item4.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
 </div>
 
 
-		afdffff
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item2_1.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Leaf Ortego Ring</a>
+		<div class="tax">$120.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_2.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Deccada Ring</a>
+		<div class="tax">$80.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Arrow Ortego Ring</a>
+		<div class="tax">$118.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item2_1.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Leaf Ortego Ring</a>
+		<div class="tax">$120.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_2.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Deccada Ring</a>
+		<div class="tax">$80.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Arrow Ortego Ring</a>
+		<div class="tax">$118.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+		</div>
+
+		<div class="items_block_pagination">
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item2_1.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Leaf Ortego Ring</a>
+		<div class="tax">$120.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_2.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Deccada Ring</a>
+		<div class="tax">$80.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Arrow Ortego Ring</a>
+		<div class="tax">$118.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item1.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item3.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item4.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item2_1.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Leaf Ortego Ring</a>
+		<div class="tax">$120.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_2.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Deccada Ring</a>
+		<div class="tax">$80.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Arrow Ortego Ring</a>
+		<div class="tax">$118.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+		</div>
+
+		<div class="items_block_pagination">
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item2_1.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Leaf Ortego Ring</a>
+		<div class="tax">$120.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_2.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Deccada Ring</a>
+		<div class="tax">$80.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Arrow Ortego Ring</a>
+		<div class="tax">$118.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2_3.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item1.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item3.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item4.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item1.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item3.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item4.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+		</div>
+
+		<div class="pagination">
+			<button class="page-btn active" data-page="1">1</button>
+			<button class="page-btn" data-page="2">2</button>
+			<button class="page-btn" data-page="3">3</button>
+			<!-- можна додати ще -->
+		</div>
+
+	</div>
+</div>
+
+
+		<section class="newsletter_catalog gift">
+<div class="container mod">
+
+	<div class="newsletter_catalog__title">
+		Choosing jewelry for a graceful woman's hand, you can easily get confused, because rings impress with a variety of shapes.
+	</div>
+
+	<div class="gift_items">
+		<div class="gift_items__left">
+			<div class="gift_items__image" href="#">
+				<img src="img/gift2.png" alt="">
+			</div>
+		</div>
+		<div class="gift_items__right">
+			<div class="gift_items__info gift_items__info__mod-input">
+				<div class="gift_items__title">
+					Newsletter
+				</div>
+				<p class="gift_items__description">Sign up for exclusive deals and early access to new products.</p>
+				<input type="email" placeholder="Your Email" class="custom-input" />
+				<div class="gift_items__button">
+					<a href="#">
+						<button class="shop-now shop-now__newslt_mod">Subscribe</button>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+</section>
 
 </main>
 
@@ -610,6 +1088,7 @@
 
 <script src="js/libs.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
 <script src="js/script.js" defer></script>
 
 </body>
