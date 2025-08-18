@@ -4,6 +4,7 @@
 		display: flex;
 		justify-content: center;
 		gap: 30px;
+
 		.card{
 			display: grid;
 			gap: 10px;
@@ -93,6 +94,14 @@
 		}
 
 	}
+
+	.catalog_main .items_card{
+		display: grid !important;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 30px;
+	}
+
+
 	@media (max-width: 768px) {
 
 	}

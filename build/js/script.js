@@ -16,6 +16,11 @@ window.addEventListener("DOMContentLoaded", function () {
     burger_logo.forEach(el => el.classList.add("scrolled"));
     headerLogo?.classList.add("scrolled");
     headerBottom?.classList.add("scrolled");
+
+    // Додаємо клас для svg path в активних submenu-toggle
+    document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => {
+      path.classList.add('active');
+    });
   };
   const removeScrolledClasses = () => {
     navLinks.forEach(el => el.classList.remove("scrolled"));
@@ -23,6 +28,11 @@ window.addEventListener("DOMContentLoaded", function () {
     burger_logo.forEach(el => el.classList.remove("scrolled"));
     headerLogo?.classList.remove("scrolled");
     headerBottom?.classList.remove("scrolled");
+
+    // Знімаємо клас для svg path в активних submenu-toggle
+    document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => {
+      path.classList.remove('active');
+    });
   };
   if (document.body.classList.contains("white_header")) {
     // Каталог — одразу білий хедер
@@ -97,8 +107,6 @@ const submenuContents = submenu.querySelectorAll('.submenu-content');
 const headerBottom = document.querySelector('.header__bottom');
 const logo = document.querySelector('.header_logo');
 const navLinks = document.querySelectorAll('.nav_link');
-
-// Наведення на головні пункти меню
 navItems.forEach(item => {
   item.addEventListener('mouseenter', () => {
     const target = item.dataset.menu;
@@ -107,8 +115,7 @@ navItems.forEach(item => {
     logo.classList.add('scrolled');
     document.body.style.overflow = 'hidden';
     navItems.forEach(nav => nav.classList.add('scrolled'));
-    navLinks.forEach(link => link.classList.add('scrolled')); // ✅ додаємо клас nav_link
-
+    navLinks.forEach(link => link.classList.add('scrolled'));
     submenuContents.forEach(content => {
       if (content.dataset.content === target) {
         content.classList.add('active');
@@ -116,34 +123,36 @@ navItems.forEach(item => {
         content.classList.remove('active');
       }
     });
-  });
-});
 
-// Наведення на праві елементи меню (Search, Account, Cart)
-navLinks.forEach(link => {
-  link.addEventListener('mouseenter', () => {
-    // Активуємо відповідний контент
-    submenuContents.forEach(content => {
-      if (content.dataset.content === target) {
-        content.classList.add('active');
-      } else {
-        content.classList.remove('active');
-      }
+    // Знімаємо active з усіх .submenu-toggle і path
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.classList.remove('active');
+      const pathEl = toggle.querySelector('svg path');
+      if (pathEl) pathEl.classList.remove('active');
     });
+
+    // Додаємо active до .submenu-toggle і path у поточному item
+    const toggle = item.parentElement.querySelector('.submenu-toggle');
+    if (toggle) {
+      toggle.classList.add('active');
+      const pathEl = toggle.querySelector('svg path');
+      if (pathEl) pathEl.classList.add('active');
+    }
   });
 });
-
-// При виході мишки з усього хедера — ховаємо меню і прибираємо класи
 document.querySelector('.header').addEventListener('mouseleave', () => {
   submenu.classList.remove('visible');
   document.body.style.overflow = '';
 
-  // Не знімати класи, якщо хедер повинен залишатися білим
+  // Знімаємо active з усіх .submenu-toggle і path
+  document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.classList.remove('active');
+    const pathEl = toggle.querySelector('svg path');
+    if (pathEl) pathEl.classList.remove('active');
+  });
   if (document.body.classList.contains('white_header')) {
     return;
   }
-
-  // Перевірка чи сторінка нижче styleThreshold
   const styleThreshold = 450;
   if (window.scrollY <= styleThreshold) {
     headerBottom.classList.remove('scrolled');
@@ -212,64 +221,42 @@ burger.addEventListener('click', openMenu);
 closeMenu.addEventListener('click', closeMenuFunc);
 overlay.addEventListener('click', closeMenuFunc);
 
-///////////////////////////елементи з десктопу бере///////////////////////////////////////////////////////
+///////////////////////////сабменю для мобільної версіїї///////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
-  const headerLinks = document.querySelectorAll('.header_nav .nav-item');
-  const mobileMenuList = document.getElementById('mobileMenuList');
-  const submenu = document.getElementById('submenu');
-  const submenuContents = submenu.querySelectorAll('.submenu-content');
+  document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const currentLi = toggle.closest('li');
+      const submenu = currentLi.querySelector('.mobile-submenu__list');
 
-  // Функція сховати всі підменю
-  function hideAllSubmenus() {
-    submenuContents.forEach(content => content.style.display = 'none');
-    submenu.style.display = 'none';
-  }
-  headerLinks.forEach(link => {
-    const li = document.createElement('li');
-    li.classList.add('li_span');
-
-    // Копіюємо <a>
-    const a = link.cloneNode(true);
-    li.appendChild(a);
-
-    // Якщо є data-menu, додаємо стрілку і слухач кліку
-    if (link.dataset.menu) {
-      const arrow = document.createElement('span');
-      arrow.innerHTML = `
-        <a><svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0.09 1.15C0.03 1.10 0 1.02 0 0.94C0 0.86 0.03 0.78 0.09 0.73L0.75 0.09C0.80 0.03 0.88 0 0.96 0C1.05 0 1.12 0.03 1.18 0.09L6.86 5.60C6.95 5.69 7 5.80 7 5.92V6.08C7 6.20 6.95 6.31 6.86 6.40L1.18 11.91C1.12 11.97 1.05 12 0.96 12C0.88 12 0.80 11.97 0.75 11.91L0.09 11.27C0.03 11.22 0 11.14 0 11.06C0 10.98 0.03 10.90 0.09 10.85L5.09 6L0.09 1.15Z" fill="black"/>
-        </svg></a>
-      `;
-      li.appendChild(arrow);
-      arrow.style.cursor = 'pointer';
-      arrow.addEventListener('click', e => {
-        e.stopPropagation(); // Щоб клік не спрацьовував на інших елементах
-
-        const menuName = link.dataset.menu;
-
-        // Якщо зараз відкрите це підменю — сховати
-        if (submenu.style.display === 'block' && [...submenuContents].some(content => content.style.display === 'block' && content.dataset.content === menuName)) {
-          hideAllSubmenus();
-          return;
+      // Закриваємо інші меню
+      document.querySelectorAll('.mobile-submenu__list.active').forEach(activeMenu => {
+        if (activeMenu !== submenu) {
+          activeMenu.style.maxHeight = '0';
+          activeMenu.classList.remove('active');
         }
-
-        // Показати відповідне підменю
-        hideAllSubmenus();
-        submenu.style.display = 'block';
-        submenuContents.forEach(content => {
-          if (content.dataset.content === menuName) {
-            content.style.display = 'block';
-          }
-        });
       });
-    }
-    mobileMenuList.appendChild(li);
-  });
+      document.querySelectorAll('.submenu-toggle.active').forEach(activeToggle => {
+        if (activeToggle !== toggle) {
+          activeToggle.classList.remove('active');
+        }
+      });
 
-  // Натискаючи поза підменю сховати його (наприклад клік по overlay)
-  const overlay = document.getElementById('overlay');
-  overlay.addEventListener('click', () => {
-    hideAllSubmenus();
+      // Перемикаємо активність
+      if (submenu) {
+        if (submenu.classList.contains('active')) {
+          // Закриваємо
+          submenu.style.maxHeight = submenu.scrollHeight + 'px'; // фіксуємо поточну
+          setTimeout(() => submenu.style.maxHeight = '0', 10); // потім плавно закриваємо
+          submenu.classList.remove('active');
+          toggle.classList.remove('active');
+        } else {
+          // Відкриваємо
+          submenu.classList.add('active');
+          toggle.classList.add('active');
+          submenu.style.maxHeight = submenu.scrollHeight + 'px';
+        }
+      }
+    });
   });
 });
 
@@ -314,20 +301,6 @@ if (priceSlider && typeof noUiSlider !== 'undefined') {
 }
 
 /////////////////catalog_pageitemslimit3x////////////////////////////////////
-document.addEventListener('DOMContentLoaded', () => {
-  const isCatalogPage = document.querySelector('main.catalog_main');
-  if (!isCatalogPage) return; // Вийти, якщо не на catalog_page
-
-  const cardSections = document.querySelectorAll('.items_card');
-  cardSections.forEach(section => {
-    const cards = section.querySelectorAll('.card');
-    cards.forEach((card, index) => {
-      if (index > 2) {
-        card.style.display = 'none';
-      }
-    });
-  });
-});
 
 ////////////////////////////пагінація///////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", function () {
@@ -359,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const itemsBlock = document.querySelector('.items_block');
   const wrapper = document.querySelector('.filters_wrapper');
   if (!filters || !itemsBlock || !wrapper) return;
-  const stickyOffset = 180;
+  const stickyOffset = 140;
   const stopOffset = 190; // відступ знизу
   const hysteresis = 10; // буферна зона, щоб уникнути дьоргання
 
@@ -383,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isStuck = false;
       filters.style.position = 'absolute';
       filters.style.top = 'auto';
-      filters.style.bottom = '0';
+      filters.style.bottom = '60px';
       filters.classList.remove('filters-sticky');
       filters.classList.add('filters-bottom');
     }
