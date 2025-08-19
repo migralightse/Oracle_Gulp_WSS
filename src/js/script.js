@@ -320,31 +320,64 @@ document.querySelectorAll( '.filter__material' ).forEach( material => {
 
 
 ///////////////////////////////////slider//////////////////////
-const priceSlider = document.getElementById( 'price-slider' );
+document.addEventListener('DOMContentLoaded', function () {
+	var priceBlocks = document.querySelectorAll('.price-filter');
 
-if (priceSlider && typeof noUiSlider !== 'undefined') {
-	noUiSlider.create( priceSlider, {
-		start: [40, 180],
-		connect: true,
-		range: {
-			'min': 0,
-			'max': 200
-		},
-		step: 1
-	} );
+	priceBlocks.forEach(function (block) {
+		var sliderEl = block.querySelector('.js-price-slider');
+		if (!sliderEl || typeof noUiSlider === 'undefined') return;
 
-	const lower = document.getElementById( 'price-lower' );
-	const upper = document.getElementById( 'price-upper' );
+		var startMin = parseInt(block.dataset.startMin, 10) || 20;   // мінімум слайдера
+		var startMax = parseInt(block.dataset.startMax, 10) || 1000; // максимальна початкова позиція
+		var rangeMin = parseInt(block.dataset.rangeMin, 10) || 20;   // мінімальна ціна
+		var rangeMax = parseInt(block.dataset.rangeMax, 10) || 1500; // максимальна ціна
 
-	priceSlider.noUiSlider.on( 'update', ( values, handle ) => {
-		const value = Math.round( values[handle] );
-		if (handle === 0) {
-			lower.textContent = value;
-		} else {
-			upper.textContent = value;
-		}
-	} );
-}
+
+		// Значення для відображення та URL (у доларах)
+		var displayMin = startMin;
+		var displayMax = startMax;
+		var displayRangeMin = rangeMin;
+		var displayRangeMax = rangeMax;
+
+		var lowerEl = block.querySelector('.js-price-lower');
+		var upperEl = block.querySelector('.js-price-upper');
+
+		noUiSlider.create(sliderEl, {
+			start: [displayMin, displayMax],
+			connect: true,
+			range: { min: displayRangeMin, max: displayRangeMax },
+			step: 1
+		});
+
+		if (lowerEl) lowerEl.textContent = displayMin;
+		if (upperEl) upperEl.textContent = displayMax;
+
+		// Авто-оновлення URL при відпусканні ручки
+		sliderEl.noUiSlider.on('change', function (values) {
+			var minVal = Math.round(values[0]); // просто долари
+			var maxVal = Math.round(values[1]);
+
+			var minParam = block.dataset.minParam;
+			var maxParam = block.dataset.maxParam;
+
+			var url = new URL(window.location.href);
+			if (minParam) url.searchParams.set(minParam, minVal);
+			if (maxParam) url.searchParams.set(maxParam, maxVal);
+
+			// Перезавантаження сторінки з новим URL
+			window.location.href = url.toString();
+		});
+
+		// Оновлення значень під слайдером під час руху
+		sliderEl.noUiSlider.on('update', function (values) {
+			if (lowerEl) lowerEl.textContent = Math.round(values[0]);
+			if (upperEl) upperEl.textContent = Math.round(values[1]);
+		});
+	});
+});
+
+
+
 
 
 /////////////////catalog_pageitemslimit3x////////////////////////////////////
@@ -352,29 +385,29 @@ if (priceSlider && typeof noUiSlider !== 'undefined') {
 
 
 ////////////////////////////пагінація///////////////////////////////////////////
-	document.addEventListener("DOMContentLoaded", function () {
-	const paginations = document.querySelectorAll(".items_block_pagination");
-	const buttons = document.querySelectorAll(".page-btn");
-
-	// Сховати всі блоки окрім першого
-	function showPage(pageIndex) {
-	paginations.forEach((block, index) => {
-	block.style.display = (index === pageIndex) ? "grid" : "none";
-});
-	buttons.forEach((btn, i) => {
-	btn.classList.toggle("active", i === pageIndex);
-});
-}
-
-	// Початково показуємо першу сторінку
-	showPage(0);
-
-	buttons.forEach((btn, index) => {
-	btn.addEventListener("click", () => {
-	showPage(index);
-});
-});
-});
+// 	document.addEventListener("DOMContentLoaded", function () {
+// 	const paginations = document.querySelectorAll(".items_block_pagination");
+// 	const buttons = document.querySelectorAll(".page-btn");
+//
+// 	// Сховати всі блоки окрім першого
+// 	function showPage(pageIndex) {
+// 	paginations.forEach((block, index) => {
+// 	block.style.display = (index === pageIndex) ? "grid" : "none";
+// });
+// 	buttons.forEach((btn, i) => {
+// 	btn.classList.toggle("active", i === pageIndex);
+// });
+// }
+//
+// 	// Початково показуємо першу сторінку
+// 	showPage(0);
+//
+// 	buttons.forEach((btn, index) => {
+// 	btn.addEventListener("click", () => {
+// 	showPage(index);
+// });
+// });
+// });
 
 
 
