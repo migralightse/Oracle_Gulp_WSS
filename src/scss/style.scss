@@ -20,6 +20,7 @@
 @import "partials/catalog_main";
 @import "partials/noUiSlider";
 @import "partials/newsletter_catalog";
+@import "partials/product_page";
 
 
 
@@ -118,7 +119,7 @@ a{
 	justify-content: start;
 }
 
-.gift_items__button .shop-now{
+.gift_items__button .button_standart{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -131,6 +132,7 @@ a{
 	border: 2px solid rgba(0,0,0,0);
 	transition: all .5s ease-in-out;
 	text-decoration: none;
+	line-height: 1;
 
 	&:hover {
 		//background: transparent;
@@ -141,6 +143,8 @@ a{
 		-webkit-backdrop-filter: blur(10px); // для Safari
 	}
 }
+
+
 
 
 
@@ -216,6 +220,7 @@ a{
 	line-height: 22px; /* 157.143% */
 	cursor: pointer;
 	transition: all 0.5s ease-in-out;
+	color: black;
 
 	&:hover {
 		color: #000000;
@@ -236,3 +241,30 @@ a{
 	line-height: 22px; /* 157.143% */
 }
 
+#product-grid .card {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+#product-grid .card.fade-out {
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.product-badge {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	background-color: #fff;
+	color: var(--Black-Primary, #000);
+	font-family: 'Poppins', sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 20px; /* 166.667% */
+
+	padding: 2px 10px;
+	z-index: 1;
+	transition: all 0.3s ease;
+}

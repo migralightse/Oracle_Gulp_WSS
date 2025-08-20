@@ -74,7 +74,7 @@
 					display: flex;
 					justify-content: start;
 
-					.shop-now {
+					.shop-gift {
 						display: flex;
 						justify-content: center;
 						align-items: center;
@@ -188,7 +188,7 @@
 					display: flex;
 					justify-content: start;
 
-					.shop-now {
+					.shop-gift {
 						display: flex;
 						justify-content: center;
 						align-items: center;
@@ -201,7 +201,7 @@
 						border: 2px solid transparent;
 						transition: all 0.5s ease-in-out;
 						text-decoration: none;
-
+						white-space: nowrap;
 
 						&:hover {
 							//background: transparent;
@@ -298,7 +298,7 @@
 		height: 210px;
 	}
 
-	.gift .container .gift_items__left .gift_items__info .gift_items__button .shop-now{
+	.gift .container .gift_items__left .gift_items__info .gift_items__button .shop-gift{
 		width: 100%;
 		padding: 14px 0 14px 0;
 		color: var(--White, #FFF);
@@ -311,7 +311,7 @@
 	}
 
 
-	.gift .container .gift_items__right .gift_items__info .gift_items__button .shop-now{
+	.gift .container .gift_items__right .gift_items__info .gift_items__button .shop-gift{
 		width: 100%;
 		font-size: 12px;
 		padding: 14px 0 14px 0;
@@ -413,7 +413,7 @@
 		height: 350px;
 	}
 
-	.gift .container .gift_items__left .gift_items__info .gift_items__button .shop-now{
+	.gift .container .gift_items__left .gift_items__info .gift_items__button .shop-gift{
 		width: 100%;
 		padding: 14px 0 14px 0;
 		color: var(--White, #FFF);
@@ -426,7 +426,7 @@
 	}
 
 
-	.gift .container .gift_items__right .gift_items__info .gift_items__button .shop-now{
+	.gift .container .gift_items__right .gift_items__info .gift_items__button .shop-gift{
 		width: 100%;
 		font-size: 14px;
 		padding: 14px 0 14px 0;

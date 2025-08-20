@@ -1,7 +1,7 @@
 ////////////////////////////scroll////////////////////
 window.addEventListener( "DOMContentLoaded", function () {
 	// Якщо на сторінці є секція catalog_main — додаємо клас
-	if (document.querySelector( '.catalog_main' )) {
+	if (document.querySelector( '.catalog_main, .product_page' )) {
 		document.body.classList.add( 'white_header' );
 	}
 
@@ -197,7 +197,7 @@ $( document ).ready( function () {
 	} );
 
 	const wrapper = document.querySelector( '.gift_items__select' );
-	const button = wrapper ? wrapper.querySelector( '.shop-now' ) : null;
+	const button = wrapper ? wrapper.querySelector( '.shop-gift' ) : null;
 
 	if (wrapper && button) {
 		const updateWidth = () => {
@@ -308,18 +308,19 @@ document.querySelectorAll( '.filter__material' ).forEach( material => {
 	const arrow = material.querySelector( '.material_arrow' );
 	const h2 = title.querySelector( 'h2' );
 
-	const toggleMenu = () => {
+	function toggleMenu  (e) {
+		e.preventDefault();
 		menu.classList.toggle( 'active' );
 		arrow.classList.toggle( 'active' );
-	};
+	}
 
 	// Вішаємо події тільки на h2 і стрілку
 	h2.addEventListener( 'click', toggleMenu );
-	arrow.addEventListener( 'click', toggleMenu );
+	arrow.addEventListener( 'click', toggleMenu);
 } );
 
 
-///////////////////////////////////slider//////////////////////
+///////////////////////////////////NOuislider//////////////////////
 document.addEventListener('DOMContentLoaded', function () {
 	var priceBlocks = document.querySelectorAll('.price-filter');
 
@@ -327,88 +328,45 @@ document.addEventListener('DOMContentLoaded', function () {
 		var sliderEl = block.querySelector('.js-price-slider');
 		if (!sliderEl || typeof noUiSlider === 'undefined') return;
 
-		var startMin = parseInt(block.dataset.startMin, 10) || 20;   // мінімум слайдера
-		var startMax = parseInt(block.dataset.startMax, 10) || 1000; // максимальна початкова позиція
-		var rangeMin = parseInt(block.dataset.rangeMin, 10) || 20;   // мінімальна ціна
-		var rangeMax = parseInt(block.dataset.rangeMax, 10) || 1500; // максимальна ціна
+		var rangeMin = parseInt(block.dataset.rangeMin, 10) || 20;
+		var rangeMax = parseInt(block.dataset.rangeMax, 10) || 1500;
 
+		var urlParams = new URLSearchParams(window.location.search);
+		var minParam = block.dataset.minParam;
+		var maxParam = block.dataset.maxParam;
 
-		// Значення для відображення та URL (у доларах)
-		var displayMin = startMin;
-		var displayMax = startMax;
-		var displayRangeMin = rangeMin;
-		var displayRangeMax = rangeMax;
+		var startMin = parseInt(urlParams.get(minParam), 10) || parseInt(block.dataset.startMin, 10) || 20;
+		var startMax = parseInt(urlParams.get(maxParam), 10) || parseInt(block.dataset.startMax, 10) || 1500;
 
 		var lowerEl = block.querySelector('.js-price-lower');
 		var upperEl = block.querySelector('.js-price-upper');
 
 		noUiSlider.create(sliderEl, {
-			start: [displayMin, displayMax],
+			start: [startMin, startMax],
 			connect: true,
-			range: { min: displayRangeMin, max: displayRangeMax },
+			range: { min: rangeMin, max: rangeMax },
 			step: 1
 		});
 
-		if (lowerEl) lowerEl.textContent = displayMin;
-		if (upperEl) upperEl.textContent = displayMax;
+		if (lowerEl) lowerEl.textContent = startMin;
+		if (upperEl) upperEl.textContent = startMax;
 
-		// Авто-оновлення URL при відпусканні ручки
-		sliderEl.noUiSlider.on('change', function (values) {
-			var minVal = Math.round(values[0]); // просто долари
+		// Оновлюємо data-* на контейнері (щоб кнопка могла зчитати)
+		block.dataset.currentMin = String(startMin);
+		block.dataset.currentMax = String(startMax);
+
+		sliderEl.noUiSlider.on('update', function (values) {
+			var minVal = Math.round(values[0]);
 			var maxVal = Math.round(values[1]);
 
-			var minParam = block.dataset.minParam;
-			var maxParam = block.dataset.maxParam;
+			if (lowerEl) lowerEl.textContent = minVal;
+			if (upperEl) upperEl.textContent = maxVal;
 
-			var url = new URL(window.location.href);
-			if (minParam) url.searchParams.set(minParam, minVal);
-			if (maxParam) url.searchParams.set(maxParam, maxVal);
-
-			// Перезавантаження сторінки з новим URL
-			window.location.href = url.toString();
-		});
-
-		// Оновлення значень під слайдером під час руху
-		sliderEl.noUiSlider.on('update', function (values) {
-			if (lowerEl) lowerEl.textContent = Math.round(values[0]);
-			if (upperEl) upperEl.textContent = Math.round(values[1]);
+			block.dataset.currentMin = String(minVal);
+			block.dataset.currentMax = String(maxVal);
 		});
 	});
 });
-
-
-
-
-
-/////////////////catalog_pageitemslimit3x////////////////////////////////////
-
-
-
-////////////////////////////пагінація///////////////////////////////////////////
-// 	document.addEventListener("DOMContentLoaded", function () {
-// 	const paginations = document.querySelectorAll(".items_block_pagination");
-// 	const buttons = document.querySelectorAll(".page-btn");
-//
-// 	// Сховати всі блоки окрім першого
-// 	function showPage(pageIndex) {
-// 	paginations.forEach((block, index) => {
-// 	block.style.display = (index === pageIndex) ? "grid" : "none";
-// });
-// 	buttons.forEach((btn, i) => {
-// 	btn.classList.toggle("active", i === pageIndex);
-// });
-// }
-//
-// 	// Початково показуємо першу сторінку
-// 	showPage(0);
-//
-// 	buttons.forEach((btn, index) => {
-// 	btn.addEventListener("click", () => {
-// 	showPage(index);
-// });
-// });
-// });
-
 
 
 ////////////////фільтри анімація//////////////////////////////////////////////////
@@ -477,6 +435,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+////////////////////////////ajax/////////////////////////////////////////////////
+
+function updateProducts(url) {
+	const currentGrid = document.querySelector("#product-grid");
+	if (!currentGrid) return;
+
+	// Додаємо клас fade-out до всіх існуючих товарів
+	const cards = currentGrid.querySelectorAll(".card");
+	cards.forEach(card => card.classList.add("fade-out"));
+
+	// Трохи чекаємо на завершення анімації
+	setTimeout(() => {
+		fetch(url)
+			.then(res => res.text())
+			.then(html => {
+				const parser = new DOMParser();
+				const doc = parser.parseFromString(html, "text/html");
+
+				// Беремо новий grid
+				const newGrid = doc.querySelector("#product-grid");
+
+				if (newGrid) {
+					currentGrid.innerHTML = newGrid.innerHTML;
+
+					// Додаємо клас плавної появи
+					const newCards = currentGrid.querySelectorAll(".card");
+					newCards.forEach(card => {
+						card.style.opacity = 0;
+						card.style.transform = "translateY(20px)";
+						setTimeout(() => {
+							card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+							card.style.opacity = 1;
+							card.style.transform = "translateY(0)";
+						}, 50);
+					});
+
+					// Оновлюємо URL та пагінацію
+					window.history.pushState({}, "", url);
+					attachPaginationListeners();
+				}
+			});
+	}, 200); // час fade-out
+}
+
+function attachPaginationListeners() {
+	document.querySelectorAll(".pagination a.page-btn").forEach(a => {
+		a.addEventListener("click", function(e) {
+			e.preventDefault();
+			updateProducts(this.href);
+		});
+	});
+}
+
+// Ініціалізація
+document.addEventListener("DOMContentLoaded", () => {
+	attachPaginationListeners();
+});
 
 
 
+
+
+////////////////////////лічильник продуктів////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', () => {
+	const qtyControl = document.querySelector('.quantity-control');
+	const qtyValue = qtyControl.querySelector('.qty-value');
+	const buttons = qtyControl.querySelectorAll('.qty-btn');
+
+	buttons[0].addEventListener('click', () => {
+		// Мінус
+		let current = parseInt(qtyValue.textContent, 10);
+		if (current > 1) {
+			qtyValue.textContent = current - 1;
+		}
+	});
+
+	buttons[1].addEventListener('click', () => {
+		// Плюс
+		let current = parseInt(qtyValue.textContent, 10);
+		qtyValue.textContent = current + 1;
+	});
+});
