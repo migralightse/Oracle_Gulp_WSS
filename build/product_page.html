@@ -45,10 +45,9 @@
 			<div id="bar2" class="bar"></div>
 			<div id="bar3" class="bar"></div>
 		</div>
-
+		<div class="overlay" id="overlay"></div>
 		<nav class="mobile-menu" id="mobileMenu">
 			<div class="container">
-				<div class="overlay" id="overlay"></div>
 				<button class="btn-close" id="closeMenu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
 				</svg></button>
@@ -89,7 +88,7 @@
 					<circle cx="8.16667" cy="8.16667" r="6.66667" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 					<path d="M13.182 13.571L16.1187 16.5001" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg></a>
-				<a class="mobile_nav_link"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<a class="mobile_nav_link" id="cartImgMob"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M12.1441 6.75412V4.22745C12.1441 2.49078 10.7366 1.08328 9.00076 1.08328C7.26409 1.07578 5.84992 2.47662 5.84242 4.21328V4.22745V6.75412" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M12.9518 16.5003H5.04815C3.08808 16.5003 1.5 14.9128 1.5 12.9545V8.35785C1.5 6.39951 3.08808 4.81201 5.04815 4.81201H12.9518C14.9119 4.81201 16.5 6.39951 16.5 8.35785V12.9545C16.5 14.9128 14.9119 16.5003 12.9518 16.5003Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg></a>
@@ -117,7 +116,7 @@
 					</a>
 					<a class="nav_link" href="#">Account</a></li>
 				<li>
-					<a class="nav_link">
+					<a class="nav_link" id="cartImg" >
 						<svg width="15" height="16" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M13.7729 8.30504V5.27304C13.7729 3.18904 12.0839 1.50004 10.0009 1.50004C7.91688 1.49104 6.21988 3.17204 6.21088 5.25604V5.27304V8.30504"
@@ -127,7 +126,8 @@
 								  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</a>
-					<a class="nav_link" href="#">Cart (2)</a></li>
+
+					<a class="nav_link" id="cartBtn">Cart (2)</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -349,6 +349,94 @@
 	</div>
 </div>
 
+
+		<!-- Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Сайдбар корзини -->
+<div class="cart-sidebar" id="cartSidebar">
+	<div class="cart-header">
+		<h2>Cart (2)</h2>
+		<button class="cart-close" id="cartClose">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					  d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z"
+					  fill="black"/>
+			</svg>
+		</button>
+	</div>
+
+	<div class="items_card cart">
+		<div class="card" data-badge="new">
+			<div class="card_image cart">
+				<span class="product-badge">New</span>
+				<a href="#">
+					<img src="img/item1.png" alt="">
+				</a>
+<!--				<div class="view-more">View More</div>-->
+			</div>
+			<div class="cart-item-info">
+				<div class="cart-item__title">
+					<h4>Kazaur Weaving Ring</h4>
+					<button class="remove"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
+					</svg></button>
+				</div>
+
+				<p class="price">$132.00</p>
+				<div class="product_det">
+					<p class="product__name">Material:</p>
+					<p class="product__var">Golden</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Size:</p>
+					<p class="product__var">16,5</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Selling plan:</p>
+					<p class="product__var">Delivery every 30 days</p>
+				</div>
+
+				<div class="quantity">
+	<div class="quantity-control cart">
+		<button class="qty-btn">
+			<img src="img/minus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+		<span class="qty-value">1</span>
+		<button class="qty-btn">
+			<img src="img/plus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+	</div>
+</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
+
+		<div class="cart-footer">
+			<div class="subtotal">
+				<div class="subtotal__title">Subtotal: </div>
+				<div class="subtotal__price">$224.00</div>
+			</div>
+			<div class="material_menu active">
+				<label class="custom-checkbox ch">
+					<input type="checkbox" />
+					<span class="checkmark"></span>
+					<h2 class="custom-checkbox_title">Please check this box to agree to our terms and conditions</h2>
+				</label>
+			</div>
+			<div class="gift_items__button">
+				<button class="button_standart check">Checkout</button>
+			</div>
+
+			<p class="tax-note">Taxes and shipping calculated at checkout</p>
+		</div>
+</div>
+
+
 	</div>
 </header>
 
@@ -379,69 +467,203 @@
 
 		</div>
 		<div class="product_details">
-			<div class="product_details__title">
-				<h2>
-					Kazaur Weaving Ring
-				</h2>
-			</div>
-			<div class="product_details__status">
-				In Stock
-			</div>
-			<div class="product_details__price">
-				$132.00
-			</div>
-			<div class="product_details__wrapper">
-				<div class="product_details__filters">
-					<div class="filters_title">Choose Material:</div>
-					<div class="gift_items__button">
-						<a href="#" class="button_standart ft">Golden</a>
-					</div>
-					<div class="gift_items__button">
-						<a href="#" class="button_standart ft">Silver</a>
-					</div>
+			<div class="product_details__container">
+				<div class="product_details__title">
+					<h2>
+						Kazaur Weaving Ring
+					</h2>
 				</div>
-				<div class="product_details__filters">
-					<div class="filters_title">Choose Size:</div>
-					<div class="sort_menu">
-						<select class="gift-select js-select2">
-							<option value="100">15</option>
-							<option value="150">15.5</option>
-							<option value="200">16</option>
-							<option value="300">16.5</option>
-						</select>
-					</div>
+				<div class="product_details__status">
+					In Stock
 				</div>
-				<div class="product_details__filters">
-					<div class="filters_title">Choose Qty:</div>
-					<div class="quantity">
-						<div class="quantity-control">
-							<button class="qty-btn">
-								<img src="img/-.svg" alt="Зменшити кількість" width="16" height="26">
-							</button>
-							<span class="qty-value">1</span>
-							<button class="qty-btn">
-								<img src="img/+.svg" alt="Зменшити кількість" width="16" height="26">
-							</button>
+				<div class="product_details__price">
+					$132.00
+				</div>
+				<div class="product_details__wrapper">
+					<div class="product_details__filters">
+						<div class="filters_title">Choose Material:</div>
+						<div class="gift_items__button">
+							<a href="#" class="button_standart ft">Golden</a>
+						</div>
+						<div class="gift_items__button">
+							<a href="#" class="button_standart ft">Silver</a>
 						</div>
 					</div>
+					<div class="product_details__filters">
+						<div class="filters_title">Choose Size:</div>
+						<div class="sort_menu">
+							<select class="gift-select js-select2">
+								<option value="100">15</option>
+								<option value="150">15.5</option>
+								<option value="200">16</option>
+								<option value="300">16.5</option>
+							</select>
+						</div>
+					</div>
+					<div class="product_details__filters">
+						<div class="filters_title">Choose Qty:</div>
+						<div class="quantity">
+	<div class="quantity-control cart">
+		<button class="qty-btn">
+			<img src="img/minus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+		<span class="qty-value">1</span>
+		<button class="qty-btn">
+			<img src="img/plus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+	</div>
+</div>
+
+					</div>
+				</div>
+				<div class="gift_items__button">
+					<a href="#" class="button_standart buy">Buy Now</a>
+				</div>
+				<div class="gift_items__button">
+					<a href="#" class="button_standart cart">
+						<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M13.7729 8.30504V5.27304C13.7729 3.18904 12.0839 1.50004 10.0009 1.50004C7.91694 1.49104 6.21994 3.17204 6.21094 5.25604V5.27304V8.30504"
+								stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								  d="M14.7422 20.0004H5.25778C2.90569 20.0004 1 18.0954 1 15.7454V10.2294C1 7.87937 2.90569 5.97437 5.25778 5.97437H14.7422C17.0943 5.97437 19 7.87937 19 10.2294V15.7454C19 18.0954 17.0943 20.0004 14.7422 20.0004Z"
+								  stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+						<p>Add to Cart</p>
+					</a>
 				</div>
 			</div>
-			<div class="gift_items__button">
-				<a href="#" class="button_standart buy">Buy Now</a>
+
+
+			<div class="product-tabs">
+				<div class="tabs">
+					<button class="tab active" data-tab="description">DESCRIPTION</button>
+					<button class="tab" data-tab="shipping">SHIPPING AND RETURNS</button>
+					<button class="tab" data-tab="packaging">PACKAGING</button>
+				</div>
+
+				<div class="tab-content active" id="description">
+					<p>
+						Minimalism, as a design style, is now in trend. Simple shapes also include patterns with
+						openwork weaving, perforation, engraving or a stone walkway. Complex shapes imply rich
+						decorating technology. Their range is truly limitless, and includes a variety of fantasy
+						incarnations. This design emphasizes the central element, shifting the main emphasis on it. </p>
+					<p class="pickup">
+						<svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								  d="M13.2803 0.21967C13.5732 0.512563 13.5732 0.987437 13.2803 1.28033L5.28033 9.28033C4.98744 9.57322 4.51256 9.57322 4.21967 9.28033L0.21967 5.28033C-0.0732233 4.98744 -0.0732233 4.51256 0.21967 4.21967C0.512563 3.92678 0.987437 3.92678 1.28033 4.21967L4.75 7.68934L12.2197 0.21967C12.5126 -0.0732233 12.9874 -0.0732233 13.2803 0.21967Z"
+								  fill="#17B656"/>
+						</svg>
+						Pickup available at <strong>Oracle Store</strong> (LitwoodRock Street 155, Chicago)
+						<span>Usually ready in 24 hours</span>
+					</p>
+
+					<div class="share">
+						<span>SHARE:</span>
+						<div class="links">
+							<a href="#"><i class="fa-brands fa-facebook-f">
+								<svg width="10" height="18" viewBox="0 0 10 18" fill="none"
+									 xmlns="http://www.w3.org/2000/svg">
+									<path
+										d="M9.5 3H6.5C5.94772 3 5.5 3.44772 5.5 4V7H9.5C9.61374 6.99748 9.7216 7.05039 9.78923 7.14188C9.85685 7.23336 9.87578 7.35201 9.84 7.46L9.1 9.66C9.03181 9.86192 8.84312 9.99842 8.63 10H5.5V17.5C5.5 17.7761 5.27614 18 5 18H2.5C2.22386 18 2 17.7761 2 17.5V10H0.5C0.223858 10 0 9.77614 0 9.5V7.5C0 7.22386 0.223858 7 0.5 7H2V4C2 1.79086 3.79086 0 6 0H9.5C9.77614 0 10 0.223858 10 0.5V2.5C10 2.77614 9.77614 3 9.5 3Z"
+										fill="black"/>
+								</svg>
+							</i></a>
+							<a href="#"><i class="fa-brands fa-twitter">
+								<svg width="20" height="18" viewBox="0 0 20 18" fill="none"
+									 xmlns="http://www.w3.org/2000/svg">
+									<path
+										d="M19.9708 2.96378C19.4547 3.65213 18.8309 4.25258 18.1235 4.74195C18.1235 4.92177 18.1235 5.10158 18.1235 5.29139C18.1292 8.5568 16.8249 11.6879 14.5029 13.9828C12.181 16.2777 9.03567 17.5443 5.77211 17.4988C3.88538 17.5051 2.02281 17.0743 0.330301 16.2401C0.239042 16.2003 0.18018 16.11 0.180527 16.0103V15.9005C0.180527 15.757 0.296758 15.6407 0.440136 15.6407C2.29475 15.5796 4.0832 14.9366 5.55244 13.8026C3.87376 13.7688 2.36338 12.7744 1.66829 11.2453C1.63318 11.1617 1.64411 11.0659 1.69713 10.9925C1.75016 10.919 1.83761 10.8785 1.9279 10.8856C2.43809 10.9369 2.95337 10.8894 3.44561 10.7458C1.59249 10.3611 0.200074 8.82265 0.000797149 6.93969C-0.00628542 6.84936 0.0341943 6.76187 0.107613 6.70882C0.181031 6.65577 0.276775 6.64483 0.360256 6.67996C0.857554 6.89939 1.39439 7.01496 1.93788 7.01961C0.314106 5.95384 -0.387258 3.92672 0.230452 2.08469C0.294214 1.9057 0.447402 1.77347 0.633723 1.7366C0.820043 1.69972 1.01201 1.76365 1.13908 1.90487C3.33027 4.23695 6.34099 5.62662 9.53645 5.78088C9.4546 5.45427 9.41434 5.11862 9.41663 4.78191C9.44652 3.01636 10.5389 1.44357 12.1825 0.799861C13.826 0.156154 15.6953 0.568927 16.9153 1.84494C17.747 1.68651 18.551 1.40716 19.3018 1.01579C19.3568 0.981454 19.4265 0.981454 19.4815 1.01579C19.5158 1.07081 19.5158 1.14058 19.4815 1.1956C19.1178 2.02835 18.5035 2.7268 17.7241 3.19355C18.4066 3.1144 19.0771 2.95341 19.7211 2.71404C19.7754 2.67713 19.8466 2.67713 19.9009 2.71404C19.9463 2.73482 19.9802 2.77457 19.9937 2.82269C20.0072 2.87081 19.9988 2.92242 19.9708 2.96378Z"
+										fill="black"/>
+								</svg>
+							</i></a>
+							<a href="#"><i class="fa-brands fa-pinterest">
+								<svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+									 xmlns="http://www.w3.org/2000/svg">
+									<path
+										d="M10.0616 0C4.52772 0 0 4.61538 0 10.2564C0 14.4872 2.51541 18.0769 6.03697 19.6154C6.03697 18.8462 6.03696 18.0769 6.16273 17.3077C6.41427 16.4103 7.42043 11.6667 7.42043 11.6667C7.42043 11.6667 7.04313 11.0256 7.04313 10C7.04313 8.46154 7.92352 7.30769 8.92969 7.30769C9.81008 7.30769 10.3131 7.94872 10.3131 8.84615C10.3131 9.74359 9.6843 11.1538 9.43276 12.4359C9.18122 13.4615 9.93584 14.359 11.0678 14.359C12.9543 14.359 14.212 11.9231 14.212 8.84615C14.212 6.53846 12.7028 4.87179 10.0616 4.87179C7.04313 4.87179 5.15658 7.17949 5.15658 9.74359C5.15658 10.641 5.40812 11.2821 5.78543 11.7949C5.9112 12.0513 6.03696 12.0513 5.91119 12.3077C5.91119 12.4359 5.78543 12.9487 5.65966 13.0769C5.53389 13.3333 5.40812 13.4615 5.15658 13.3333C3.77311 12.6923 3.14425 11.1538 3.14425 9.35897C3.14425 6.41026 5.53388 2.94872 10.3131 2.94872C14.212 2.94872 16.7274 5.76923 16.7274 8.84615C16.7274 12.8205 14.5893 15.8974 11.3193 15.8974C10.1874 15.8974 9.18122 15.2564 8.80391 14.6154C8.80391 14.6154 8.17505 16.9231 8.04928 17.4359C7.79774 18.2051 7.42044 18.9744 7.04313 19.6154C7.92352 19.8718 8.92967 20 9.93583 20C15.4697 20 19.9974 15.3846 19.9974 9.74359C20.1232 4.61539 15.5955 0 10.0616 0Z"
+										fill="black"/>
+								</svg>
+							</i></a>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="tab-content" id="shipping">
+					<p>
+						Shipping usually takes 3–5 business days. Returns are accepted within 14 days in original
+						packaging.
+					</p>
+				</div>
+
+				<div class="tab-content" id="packaging">
+					<p>
+						Items are carefully packaged in eco-friendly boxes with protective wrapping to ensure safe
+						delivery.
+					</p>
+				</div>
 			</div>
-			<div class="gift_items__button">
-				<a href="#" class="button_standart cart">
-					<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M13.7729 8.30504V5.27304C13.7729 3.18904 12.0839 1.50004 10.0009 1.50004C7.91694 1.49104 6.21994 3.17204 6.21094 5.25604V5.27304V8.30504" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M14.7422 20.0004H5.25778C2.90569 20.0004 1 18.0954 1 15.7454V10.2294C1 7.87937 2.90569 5.97437 5.25778 5.97437H14.7422C17.0943 5.97437 19 7.87937 19 10.2294V15.7454C19 18.0954 17.0943 20.0004 14.7422 20.0004Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-					<p>Add to Cart</p>
-				</a>
-			</div>
+
 
 		</div>
 	</div>
 
+</div>
+
+	<div class="main">
+	<div class="container">
+		<section class="items">
+			<div class="items_title">
+				You May Also Like
+			</div>
+			<div class="items_card">
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<span class="product-badge">New</span>
+			<a href="#">
+				<img src="img/item1.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item2.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item3.png" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+	<div class="card" data-badge="new">
+		<div class="card_image">
+			<a href="#">
+				<img src="img/item4.jpg" alt="">
+			</a>
+			<div class="view-more">View More</div>
+		</div>
+		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<div class="tax">$132.00</div>
+	</div>
+</div>
+
+
+		</section>
+	</div>
 </div>
 
 </main>

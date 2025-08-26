@@ -1,21 +1,21 @@
 ////////////////////////////scroll////////////////////
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener('DOMContentLoaded', function () {
   // Якщо на сторінці є секція catalog_main — додаємо клас
   if (document.querySelector('.catalog_main, .product_page')) {
     document.body.classList.add('white_header');
   }
-  const navLinks = document.querySelectorAll(".header_nav .nav__list li > a");
-  const mob_navLinks = document.querySelectorAll(".header_nav .mobile_nav_list > a");
-  const headerBottom = document.querySelector(".header__bottom");
-  const headerLogo = document.querySelector(".header_logo");
-  const header__top = document.querySelector(".header__top");
-  const burger_logo = document.querySelectorAll(".burger-menu .bar");
+  const navLinks = document.querySelectorAll('.header_nav .nav__list li > a');
+  const mob_navLinks = document.querySelectorAll('.header_nav .mobile_nav_list > a');
+  const headerBottom = document.querySelector('.header__bottom');
+  const headerLogo = document.querySelector('.header_logo');
+  const header__top = document.querySelector('.header__top');
+  const burger_logo = document.querySelectorAll('.burger-menu .bar');
   const applyScrolledClasses = () => {
-    navLinks.forEach(el => el.classList.add("scrolled"));
-    mob_navLinks.forEach(el => el.classList.add("scrolled"));
-    burger_logo.forEach(el => el.classList.add("scrolled"));
-    headerLogo?.classList.add("scrolled");
-    headerBottom?.classList.add("scrolled");
+    navLinks.forEach(el => el.classList.add('scrolled'));
+    mob_navLinks.forEach(el => el.classList.add('scrolled'));
+    burger_logo.forEach(el => el.classList.add('scrolled'));
+    headerLogo?.classList.add('scrolled');
+    headerBottom?.classList.add('scrolled');
 
     // Додаємо клас для svg path в активних submenu-toggle
     document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => {
@@ -23,32 +23,32 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   };
   const removeScrolledClasses = () => {
-    navLinks.forEach(el => el.classList.remove("scrolled"));
-    mob_navLinks.forEach(el => el.classList.remove("scrolled"));
-    burger_logo.forEach(el => el.classList.remove("scrolled"));
-    headerLogo?.classList.remove("scrolled");
-    headerBottom?.classList.remove("scrolled");
+    navLinks.forEach(el => el.classList.remove('scrolled'));
+    mob_navLinks.forEach(el => el.classList.remove('scrolled'));
+    burger_logo.forEach(el => el.classList.remove('scrolled'));
+    headerLogo?.classList.remove('scrolled');
+    headerBottom?.classList.remove('scrolled');
 
     // Знімаємо клас для svg path в активних submenu-toggle
     document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => {
       path.classList.remove('active');
     });
   };
-  if (document.body.classList.contains("white_header")) {
+  if (document.body.classList.contains('white_header')) {
     // Каталог — одразу білий хедер
-    headerBottom?.classList.add("scrolled_top");
+    headerBottom?.classList.add('scrolled_top');
     applyScrolledClasses();
   } else {
     // Головна — тільки при скролі
-    window.addEventListener("scroll", function () {
+    window.addEventListener('scroll', function () {
       const moveThreshold = 48;
       const styleThreshold = 450;
       if (window.scrollY > moveThreshold) {
-        headerBottom?.classList.add("scrolled_top");
-        header__top?.classList.add("slide-up");
+        headerBottom?.classList.add('scrolled_top');
+        header__top?.classList.add('slide-up');
       } else {
-        headerBottom?.classList.remove("scrolled_top");
-        header__top?.classList.remove("slide-up");
+        headerBottom?.classList.remove('scrolled_top');
+        header__top?.classList.remove('slide-up');
       }
       if (window.scrollY > styleThreshold) {
         applyScrolledClasses();
@@ -379,46 +379,46 @@ document.addEventListener('DOMContentLoaded', () => {
 ////////////////////////////ajax/////////////////////////////////////////////////
 
 function updateProducts(url) {
-  const currentGrid = document.querySelector("#product-grid");
+  const currentGrid = document.querySelector('#product-grid');
   if (!currentGrid) return;
 
   // Додаємо клас fade-out до всіх існуючих товарів
-  const cards = currentGrid.querySelectorAll(".card");
-  cards.forEach(card => card.classList.add("fade-out"));
+  const cards = currentGrid.querySelectorAll('.card');
+  cards.forEach(card => card.classList.add('fade-out'));
 
   // Трохи чекаємо на завершення анімації
   setTimeout(() => {
     fetch(url).then(res => res.text()).then(html => {
       const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
+      const doc = parser.parseFromString(html, 'text/html');
 
       // Беремо новий grid
-      const newGrid = doc.querySelector("#product-grid");
+      const newGrid = doc.querySelector('#product-grid');
       if (newGrid) {
         currentGrid.innerHTML = newGrid.innerHTML;
 
         // Додаємо клас плавної появи
-        const newCards = currentGrid.querySelectorAll(".card");
+        const newCards = currentGrid.querySelectorAll('.card');
         newCards.forEach(card => {
           card.style.opacity = 0;
-          card.style.transform = "translateY(20px)";
+          card.style.transform = 'translateY(20px)';
           setTimeout(() => {
-            card.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
             card.style.opacity = 1;
-            card.style.transform = "translateY(0)";
+            card.style.transform = 'translateY(0)';
           }, 50);
         });
 
         // Оновлюємо URL та пагінацію
-        window.history.pushState({}, "", url);
+        window.history.pushState({}, '', url);
         attachPaginationListeners();
       }
     });
   }, 200); // час fade-out
 }
 function attachPaginationListeners() {
-  document.querySelectorAll(".pagination a.page-btn").forEach(a => {
-    a.addEventListener("click", function (e) {
+  document.querySelectorAll('.pagination a.page-btn').forEach(a => {
+    a.addEventListener('click', function (e) {
       e.preventDefault();
       updateProducts(this.href);
     });
@@ -426,26 +426,361 @@ function attachPaginationListeners() {
 }
 
 // Ініціалізація
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   attachPaginationListeners();
 });
 
-////////////////////////лічильник продуктів////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', () => {
-  const qtyControl = document.querySelector('.quantity-control');
-  const qtyValue = qtyControl.querySelector('.qty-value');
-  const buttons = qtyControl.querySelectorAll('.qty-btn');
-  buttons[0].addEventListener('click', () => {
-    // Мінус
-    let current = parseInt(qtyValue.textContent, 10);
-    if (current > 1) {
-      qtyValue.textContent = current - 1;
+//////////////////////////дескріпшин продукту////////////////////////
+const tabs = document.querySelectorAll('.tab');
+const contents = document.querySelectorAll('.tab-content');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    contents.forEach(c => c.classList.remove('active'));
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+/////////////////////////обираємо потрібнний варіант товару в продукті/////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+  // Всі форми продуктів на сторінці
+  const cartForms = document.querySelectorAll('form[id^="product-form-"]');
+  cartForms.forEach(form => {
+    // select всередині цієї форми
+    const variantSelect = form.querySelector('select[name="id"]');
+    // ціна для цього продукту
+    const priceEl = form.closest('.product_details').querySelector('.product_details__price');
+    // блоки опцій для цього продукту
+    const optionWrappers = form.closest('.product_details').querySelectorAll('.product_details__filters');
+
+    // Додаємо слухачі на кнопки та select
+    optionWrappers.forEach(wrapper => {
+      const buttons = wrapper.querySelectorAll('.button_standart.ft');
+      const selectEl = wrapper.querySelector('select.gift-select');
+
+      // Кнопки
+      if (buttons.length) {
+        buttons.forEach(button => {
+          button.addEventListener('click', function (e) {
+            e.preventDefault();
+            buttons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            if (selectEl) {
+              selectEl.value = this.dataset.value;
+              selectEl.dispatchEvent(new Event('change'));
+            }
+            updateVariant();
+          });
+        });
+      }
+
+      // Select
+      if (selectEl) {
+        selectEl.addEventListener('change', function () {
+          if (buttons.length) {
+            buttons.forEach(btn => {
+              btn.classList.toggle('active', btn.dataset.value === this.value);
+            });
+          }
+          updateVariant();
+        });
+      }
+    });
+    function updateVariant() {
+      let selectedOptions = [];
+      optionWrappers.forEach(wrapper => {
+        const index = wrapper.dataset.optionIndex;
+        const activeBtn = wrapper.querySelector('.button_standart.ft.active');
+        const selectEl = wrapper.querySelector('select.gift-select');
+        if (activeBtn) {
+          selectedOptions[index] = activeBtn.dataset.value;
+        } else if (selectEl) {
+          selectedOptions[index] = selectEl.value;
+        }
+      });
+
+      // шукаємо варіант по JSON
+      let matchedVariant = Array.from(variantSelect.options).find(option => {
+        const variantOptions = JSON.parse(option.dataset.options);
+        return variantOptions.every((opt, i) => opt === selectedOptions[i]);
+      });
+      if (matchedVariant) {
+        variantSelect.value = matchedVariant.value;
+        variantSelect.dispatchEvent(new Event('change'));
+        if (priceEl) {
+          priceEl.textContent = matchedVariant.dataset.price;
+        }
+        const newUrl = `${window.location.pathname}?variant=${matchedVariant.value}`;
+        window.history.replaceState(null, '', newUrl);
+      }
     }
+
+    // Викликаємо при завантаженні
+    updateVariant();
   });
-  buttons[1].addEventListener('click', () => {
-    // Плюс
+});
+
+////////////////////////лічильник продуктів////////////////////////////////////////
+document.querySelectorAll('.product_details').forEach(product => {
+  const qtyControl = product.querySelector('.quantity-control');
+  const qtyValue = qtyControl.querySelector('.qty-value');
+  const form = product.querySelector('form[id^="product-form-"]'); // форма цього продукту
+  const qtyInput = form.querySelector('input[name="quantity"]'); // hidden всередині форми
+  const [minusBtn, plusBtn] = qtyControl.querySelectorAll('.qty-btn');
+  minusBtn.addEventListener('click', () => {
     let current = parseInt(qtyValue.textContent, 10);
-    qtyValue.textContent = current + 1;
+    if (current > 1) current--;
+    qtyValue.textContent = current;
+    qtyInput.value = current;
   });
+  plusBtn.addEventListener('click', () => {
+    let current = parseInt(qtyValue.textContent, 10);
+    current++;
+    qtyValue.textContent = current;
+    qtyInput.value = current;
+  });
+});
+
+//////////////////////////////лічильник в кошику///////////////////////
+function setupCartQtyButtons() {
+  const qtyButtons = document.querySelectorAll('.quantity-control.cart .qty-btn');
+  qtyButtons.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const key = btn.dataset.key;
+      const action = btn.dataset.action;
+      const qtyEl = btn.parentElement.querySelector('.qty-value');
+      let currentQty = parseInt(qtyEl.textContent, 10);
+      let newQty = action === 'plus' ? currentQty + 1 : currentQty - 1;
+      if (newQty < 1) newQty = 1;
+      const formData = new FormData();
+      formData.append('quantity', newQty);
+      formData.append('id', key);
+      await fetch('/cart/change.js', {
+        method: 'POST',
+        body: formData
+      });
+
+      // Оновлюємо корзину
+      const cart = await fetch('/cart.js').then(res => res.json());
+      renderCart(cart);
+    });
+  });
+}
+
+/////////////////button add to cart//////////////////
+document.addEventListener('DOMContentLoaded', () => {
+  const cartForms = document.querySelectorAll('form[id^="product-form-"]');
+  cartForms.forEach(form => {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const variantSelect = form.querySelector('select[name="id"]'); // name="id" завжди правильний
+      const qtyInput = form.querySelector('input.qty-input'); // інпут саме всередині цієї форми
+
+      const formData = new FormData();
+      formData.append('id', variantSelect.value);
+      formData.append('quantity', qtyInput.value);
+
+      // додаємо товар у кошик
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      });
+
+      // отримуємо оновлений cart
+      const cart = await fetch('/cart.js').then(res => res.json());
+
+      // перемальовуємо корзину
+      renderCart(cart);
+
+      // відкриваємо sidebar
+      document.getElementById('cartSidebar').classList.add('active');
+      document.getElementById('cartOverlay').classList.add('active');
+    });
+  });
+});
+
+///////////////////корзина////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const productForms = document.querySelectorAll('[id^="product-form-"]');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartItems = document.getElementById('cartItems');
+
+  // 🔹 1. При завантаженні сторінки підтягнемо вже існуючу корзину
+  const cart = await fetch('/cart.js').then(res => res.json());
+  renderCart(cart);
+
+  // 🔹 2. Обробка додавання товару
+  productForms.forEach(productForm => {
+    productForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(productForm);
+
+      // додаємо товар у кошик
+      await fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      });
+
+      // отримуємо оновлений cart
+      const cart = await fetch('/cart.js').then(res => res.json());
+
+      // перемальовуємо корзину
+      renderCart(cart);
+
+      // відкриваємо sidebar
+      cartSidebar.classList.add('active');
+      cartOverlay.classList.add('active');
+    });
+  });
+  function renderCart(cart) {
+    cartItems.innerHTML = '';
+    if (cart.items.length === 0) {
+      cartItems.innerHTML = '<p>Кошик порожній</p>';
+      document.querySelector('.subtotal__price').textContent = '0 ' + cart.currency;
+      return;
+    }
+    cart.items.forEach(item => {
+      const card = `
+        <div class="card" data-badge="new">
+          <div class="card_image cart">
+            ${item.featured_image ? `<a href="${item.url}"><img src="${item.featured_image.url}" alt="${item.title}"></a>` : ''}
+          </div>
+          <div class="cart-item-info">
+            <div class="cart-item__title">
+              <h4>${item.product_title}</h4>
+              <button class="remove" data-key="${item.key}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M1.28046 15.7849C0.987548 16.0778 0.51264 16.0778 0.219726 15.7849C-0.0731888 15.492 -0.0731888 15.0172 0.219726 14.7243L6.94271 8.0023L0.219686 1.28024C-0.0732284 0.987367 -0.0732287 0.512527 0.219686 0.219655C0.5126 -0.0732169 0.987508 -0.0732167 1.28042 0.219655L8.00345 6.94171L14.7265 0.219654C15.0194 -0.0732179 15.4943 -0.0732181 15.7872 0.219654C16.0801 0.512526 16.0801 0.987366 15.7872 1.28024L9.06419 8.0023L15.7872 14.7243C16.0801 15.0172 16.0801 15.492 15.7872 15.7849C15.4943 16.0778 15.0194 16.0778 14.7264 15.7849L8.00345 9.06288L1.28046 15.7849Z" fill="black"/>
+</svg></button>
+            </div>
+            <p class="price">${(item.final_line_price / 100).toFixed(2)} ${cart.currency}</p>
+            ${item.options_with_values.map(opt => `
+              <div class="product_det">
+                <p class="product__name">${opt.name}:</p>
+                <p class="product__var">${opt.value}</p>
+              </div>
+            `).join('')}
+            <div class="quantity">
+              <div class="quantity-control cart">
+                <button class="qty-btn" data-action="minus" data-key="${item.key}">-</button>
+                <span class="qty-value">${item.quantity}</span>
+                <button class="qty-btn" data-action="plus" data-key="${item.key}">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      cartItems.insertAdjacentHTML('beforeend', card);
+    });
+
+    // subtotal
+    document.querySelector('.subtotal__price').textContent = (cart.total_price / 100).toFixed(2) + ' ' + cart.currency;
+
+    // ПІДКЛЮЧАЄМО слухачі до кнопок
+    setupCartQtyButtons();
+  }
+  function setupCartQtyButtons() {
+    const qtyButtons = document.querySelectorAll('.quantity-control.cart .qty-btn');
+    qtyButtons.forEach(btn => {
+      btn.onclick = async () => {
+        // використовую onclick, щоб уникнути дублювання слухачів
+        const key = btn.dataset.key;
+        const action = btn.dataset.action;
+        const qtyEl = btn.parentElement.querySelector('.qty-value');
+        let currentQty = parseInt(qtyEl.textContent, 10);
+        let newQty = action === 'plus' ? currentQty + 1 : currentQty - 1;
+        if (newQty < 1) newQty = 1;
+        const formData = new FormData();
+        formData.append('quantity', newQty);
+        formData.append('id', key);
+        await fetch('/cart/change.js', {
+          method: 'POST',
+          body: formData
+        });
+        const cart = await fetch('/cart.js').then(res => res.json());
+        renderCart(cart);
+      };
+    });
+  }
+});
+
+//
+
+////////fetch///////
+document.addEventListener('DOMContentLoaded', () => {
+  const clearBtn = document.querySelector('.button_standart.fetch');
+  const cartItems = document.getElementById('cartItems');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', async () => {
+      // очищаємо корзину
+      await fetch('/cart/clear.js', {
+        method: 'POST'
+      });
+
+      // отримуємо оновлений cart
+      const cart = await fetch('/cart.js').then(res => res.json());
+
+      // перемальовуємо
+      renderCart(cart);
+    });
+  }
+  function renderCart(cart) {
+    cartItems.innerHTML = '';
+    if (cart.items.length === 0) {
+      cartItems.innerHTML = '<p>Кошик порожній</p>';
+    } else {
+      cart.items.forEach(item => {
+        const card = `
+          <div class="card">
+            <div class="cart-item-info">
+              <h4>${item.product_title}</h4>
+              <p>${item.quantity} x ${(item.final_line_price / 100).toFixed(2)} ${cart.currency}</p>
+            </div>
+          </div>
+        `;
+        cartItems.insertAdjacentHTML('beforeend', card);
+      });
+    }
+    document.querySelector('.subtotal__price').textContent = (cart.total_price / 100).toFixed(2) + ' ' + cart.currency;
+  }
+});
+
+/////////////////////////////відкриття попап cart///////////////////////////////
+const cartBtn = document.getElementById('cartBtn');
+const cartImg = document.getElementById('cartImg');
+const cartImgMob = document.getElementById('cartImgMob');
+const cartSidebar = document.getElementById('cartSidebar');
+const cartClose = document.getElementById('cartClose');
+const cartOverlay = document.getElementById('cartOverlay');
+function openCart() {
+  cartSidebar.classList.add('active');
+  cartOverlay.classList.add('active');
+  document.body.classList.add('scroll-lock');
+}
+function closeCartFunc() {
+  cartSidebar.classList.remove('active');
+  cartOverlay.classList.remove('active');
+  document.body.classList.remove('scroll-lock');
+}
+cartBtn.addEventListener('click', openCart);
+cartImg.addEventListener('click', openCart);
+cartImgMob.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCartFunc);
+cartOverlay.addEventListener('click', closeCartFunc);
+
+//////////чекаут кнопк//////////
+document.addEventListener('DOMContentLoaded', () => {
+  const checkoutContainer = document.getElementById('checkout');
+  if (checkoutContainer) {
+    const checkoutBtn = checkoutContainer.querySelector('button');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        // Переходимо на сторінку оформлення замовлення
+        window.location.href = '/checkout';
+      });
+    }
+  }
 });
 //# sourceMappingURL=script.js.map

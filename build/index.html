@@ -45,10 +45,9 @@
 			<div id="bar2" class="bar"></div>
 			<div id="bar3" class="bar"></div>
 		</div>
-
+		<div class="overlay" id="overlay"></div>
 		<nav class="mobile-menu" id="mobileMenu">
 			<div class="container">
-				<div class="overlay" id="overlay"></div>
 				<button class="btn-close" id="closeMenu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
 				</svg></button>
@@ -89,7 +88,7 @@
 					<circle cx="8.16667" cy="8.16667" r="6.66667" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 					<path d="M13.182 13.571L16.1187 16.5001" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg></a>
-				<a class="mobile_nav_link"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<a class="mobile_nav_link" id="cartImgMob"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M12.1441 6.75412V4.22745C12.1441 2.49078 10.7366 1.08328 9.00076 1.08328C7.26409 1.07578 5.84992 2.47662 5.84242 4.21328V4.22745V6.75412" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M12.9518 16.5003H5.04815C3.08808 16.5003 1.5 14.9128 1.5 12.9545V8.35785C1.5 6.39951 3.08808 4.81201 5.04815 4.81201H12.9518C14.9119 4.81201 16.5 6.39951 16.5 8.35785V12.9545C16.5 14.9128 14.9119 16.5003 12.9518 16.5003Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 				</svg></a>
@@ -117,7 +116,7 @@
 					</a>
 					<a class="nav_link" href="#">Account</a></li>
 				<li>
-					<a class="nav_link">
+					<a class="nav_link" id="cartImg" >
 						<svg width="15" height="16" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M13.7729 8.30504V5.27304C13.7729 3.18904 12.0839 1.50004 10.0009 1.50004C7.91688 1.49104 6.21988 3.17204 6.21088 5.25604V5.27304V8.30504"
@@ -127,7 +126,8 @@
 								  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</a>
-					<a class="nav_link" href="#">Cart (2)</a></li>
+
+					<a class="nav_link" id="cartBtn">Cart (2)</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -349,6 +349,94 @@
 	</div>
 </div>
 
+
+		<!-- Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Сайдбар корзини -->
+<div class="cart-sidebar" id="cartSidebar">
+	<div class="cart-header">
+		<h2>Cart (2)</h2>
+		<button class="cart-close" id="cartClose">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					  d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z"
+					  fill="black"/>
+			</svg>
+		</button>
+	</div>
+
+	<div class="items_card cart">
+		<div class="card" data-badge="new">
+			<div class="card_image cart">
+				<span class="product-badge">New</span>
+				<a href="#">
+					<img src="img/item1.png" alt="">
+				</a>
+<!--				<div class="view-more">View More</div>-->
+			</div>
+			<div class="cart-item-info">
+				<div class="cart-item__title">
+					<h4>Kazaur Weaving Ring</h4>
+					<button class="remove"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
+					</svg></button>
+				</div>
+
+				<p class="price">$132.00</p>
+				<div class="product_det">
+					<p class="product__name">Material:</p>
+					<p class="product__var">Golden</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Size:</p>
+					<p class="product__var">16,5</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Selling plan:</p>
+					<p class="product__var">Delivery every 30 days</p>
+				</div>
+
+				<div class="quantity">
+	<div class="quantity-control cart">
+		<button class="qty-btn">
+			<img src="img/minus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+		<span class="qty-value">1</span>
+		<button class="qty-btn">
+			<img src="img/plus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+	</div>
+</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
+
+		<div class="cart-footer">
+			<div class="subtotal">
+				<div class="subtotal__title">Subtotal: </div>
+				<div class="subtotal__price">$224.00</div>
+			</div>
+			<div class="material_menu active">
+				<label class="custom-checkbox ch">
+					<input type="checkbox" />
+					<span class="checkmark"></span>
+					<h2 class="custom-checkbox_title">Please check this box to agree to our terms and conditions</h2>
+				</label>
+			</div>
+			<div class="gift_items__button">
+				<button class="button_standart check">Checkout</button>
+			</div>
+
+			<p class="tax-note">Taxes and shipping calculated at checkout</p>
+		</div>
+</div>
+
+
 	</div>
 </header>
 
@@ -365,11 +453,13 @@
 	</div>
 </section>
 
+		<div class="main">
+	<div class="container">
 		<section class="items">
-	<div class="items_title">
-		Popular Items
-	</div>
-	<div class="items_card">
+			<div class="items_title">
+				Popular Items
+			</div>
+			<div class="items_card">
 	<div class="card" data-badge="new">
 		<div class="card_image">
 			<span class="product-badge">New</span>
@@ -414,12 +504,11 @@
 </div>
 
 
-	<div class="items_button">
-		<a  class="show_more" href="#">
-			Show More
-		</a>
+		</section>
+
 	</div>
-</section>
+
+</div>
 
 		<section class="jewelry_collection">
 	<div class="container">
@@ -552,7 +641,7 @@
 					your choice?A gift certificate is a modern way to bring in friends and relatives, to pick out
 					those who are dear to your heart.</p>
 				<div class="gift_items__button">
-					<a href="#" class="shop-gift">Shop Now</a>
+					<a data-cart-open class="shop-gift">Shop Now</a>
 				</div>
 			</div>
 

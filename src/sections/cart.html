@@ -1,0 +1,74 @@
+<!-- Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Сайдбар корзини -->
+<div class="cart-sidebar" id="cartSidebar">
+	<div class="cart-header">
+		<h2>Cart (2)</h2>
+		<button class="cart-close" id="cartClose">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd"
+					  d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z"
+					  fill="black"/>
+			</svg>
+		</button>
+	</div>
+
+	<div class="items_card cart">
+		<div class="card" data-badge="new">
+			<div class="card_image cart">
+				<span class="product-badge">New</span>
+				<a href="#">
+					<img src="img/item1.png" alt="">
+				</a>
+<!--				<div class="view-more">View More</div>-->
+			</div>
+			<div class="cart-item-info">
+				<div class="cart-item__title">
+					<h4>Kazaur Weaving Ring</h4>
+					<button class="remove"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
+					</svg></button>
+				</div>
+
+				<p class="price">$132.00</p>
+				<div class="product_det">
+					<p class="product__name">Material:</p>
+					<p class="product__var">Golden</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Size:</p>
+					<p class="product__var">16,5</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Selling plan:</p>
+					<p class="product__var">Delivery every 30 days</p>
+				</div>
+
+				@@include('../partials/quantity.html')
+
+			</div>
+
+		</div>
+
+	</div>
+
+		<div class="cart-footer">
+			<div class="subtotal">
+				<div class="subtotal__title">Subtotal: </div>
+				<div class="subtotal__price">$224.00</div>
+			</div>
+			<div class="material_menu active">
+				<label class="custom-checkbox ch">
+					<input type="checkbox" />
+					<span class="checkmark"></span>
+					<h2 class="custom-checkbox_title">Please check this box to agree to our terms and conditions</h2>
+				</label>
+			</div>
+			<div class="gift_items__button">
+				<button class="button_standart check">Checkout</button>
+			</div>
+
+			<p class="tax-note">Taxes and shipping calculated at checkout</p>
+		</div>
+</div>
