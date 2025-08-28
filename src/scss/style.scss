@@ -401,6 +401,11 @@ a{
 	.material_menu.active ~ .material_title .material_arrow svg {
 		transform: rotate(180deg);
 	}
+}
 
 
+////////////////////////////////////////
+#mainImage {
+	opacity: 1;
+	transition: opacity 0.3s ease;
 }

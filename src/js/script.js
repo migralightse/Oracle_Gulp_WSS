@@ -374,8 +374,8 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 	if (!filters || !itemsBlock || !wrapper) return;
 
-	const stickyOffset = 140;
-	const stopOffset = 190; // відступ знизу
+	const stickyOffset = window.innerWidth < 768 ? 40 : 141;
+	const  stopOffset = window.innerWidth < 768 ? 40 : 190;
 	const hysteresis = 10; // буферна зона, щоб уникнути дьоргання
 
 	let isStuck = false;
@@ -429,6 +429,29 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		}
 	} );
 } );
+
+
+//////////фільтри моб анімація виїзду ////////////////////////////////
+document.addEventListener('DOMContentLoaded', () => {
+	const filterWrapper = document.querySelector('.filters_wrapper');
+	const openBtn = document.getElementById('open-filters'); // кнопка відкриття
+	const closeBtn = document.querySelector('.filter-close'); // твоя кнопка закриття
+
+	if (openBtn && filterWrapper && closeBtn) {
+		openBtn.addEventListener('click', (e) => {
+			e.preventDefault();
+			filterWrapper.classList.add('active');
+			document.body.style.overflow = 'hidden'; // блокуєм скрол
+		});
+
+		closeBtn.addEventListener('click', () => {
+			filterWrapper.classList.remove('active');
+			document.body.style.overflow = ''; // повертаєм скрол
+		});
+	}
+});
+
+
 
 
 ////////////////////////////ajax/////////////////////////////////////////////////
@@ -511,14 +534,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	const cartForms = document.querySelectorAll('form[id^="product-form-"]');
 
 	cartForms.forEach(form => {
-		// select всередині цієї форми
-		const variantSelect = form.querySelector('select[name="id"]');
-		// ціна для цього продукту
+		// шукаємо правильний select всередині форми
+		const variantSelect = form.querySelector('select[id^="variant-select"]');
 		const priceEl = form.closest('.product_details').querySelector('.product_details__price');
-		// блоки опцій для цього продукту
 		const optionWrappers = form.closest('.product_details').querySelectorAll('.product_details__filters');
 
-		// Додаємо слухачі на кнопки та select
+		// додаємо слухачі на кнопки та select
 		optionWrappers.forEach(wrapper => {
 			const buttons = wrapper.querySelectorAll('.button_standart.ft');
 			const selectEl = wrapper.querySelector('select.gift-select');
@@ -557,6 +578,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		function updateVariant() {
 			let selectedOptions = [];
 
+			// Формуємо масив вибраних опцій
 			optionWrappers.forEach(wrapper => {
 				const index = wrapper.dataset.optionIndex;
 				const activeBtn = wrapper.querySelector('.button_standart.ft.active');
@@ -566,6 +588,10 @@ document.addEventListener('DOMContentLoaded', function () {
 					selectedOptions[index] = activeBtn.dataset.value;
 				} else if (selectEl) {
 					selectedOptions[index] = selectEl.value;
+				} else {
+					// якщо нічого не вибрано, беремо перший варіант
+					const firstOption = wrapper.querySelector('.button_standart.ft, select.gift-select option');
+					selectedOptions[index] = firstOption ? firstOption.dataset.value || firstOption.value : '';
 				}
 			});
 
@@ -576,13 +602,28 @@ document.addEventListener('DOMContentLoaded', function () {
 			});
 
 			if (matchedVariant) {
+				// Оновлюємо select
 				variantSelect.value = matchedVariant.value;
 				variantSelect.dispatchEvent(new Event('change'));
 
+				// Оновлюємо ціну
 				if (priceEl) {
 					priceEl.textContent = matchedVariant.dataset.price;
 				}
 
+				// Оновлюємо картинку
+				const productContainer = form.closest('.product_details').parentElement;
+				const mainImage = productContainer.querySelector('#mainImage');
+				const mainLink = productContainer.querySelector('a[data-fancybox="gallery"]');
+
+				if (mainImage && matchedVariant.dataset.image) {
+					mainImage.src = matchedVariant.dataset.image;
+					if (mainLink) {
+						mainLink.href = matchedVariant.dataset.image;
+					}
+				}
+
+				// Змінюємо URL
 				const newUrl = `${window.location.pathname}?variant=${matchedVariant.value}`;
 				window.history.replaceState(null, '', newUrl);
 			}
@@ -650,10 +691,6 @@ function setupCartQtyButtons() {
 
 
 
-
-
-
-
 /////////////////button add to cart//////////////////
 document.addEventListener('DOMContentLoaded', () => {
 	const cartForms = document.querySelectorAll('form[id^="product-form-"]');
@@ -700,7 +737,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	const cartOverlay = document.getElementById('cartOverlay');
 	const cartItems = document.getElementById('cartItems');
 
-	// 🔹 1. При завантаженні сторінки підтягнемо вже існуючу корзину
+	// 🔹 1.
 	const cart = await fetch('/cart.js').then(res => res.json());
 	renderCart(cart);
 
@@ -733,7 +770,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		cartItems.innerHTML = '';
 
 		if (cart.items.length === 0) {
-			cartItems.innerHTML = '<p>Кошик порожній</p>';
+			cartItems.innerHTML = '<p class="cart__fetch">Cart is empty...</p>';
 			document.querySelector('.subtotal__price').textContent = '0 ' + cart.currency;
 			return;
 		}
@@ -774,6 +811,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 		// subtotal
 		document.querySelector('.subtotal__price').textContent =
 			(cart.total_price / 100).toFixed(2) + ' ' + cart.currency;
+
+		// 🔹 Оновлюємо лічильник у хедері
+		const cartCounter = document.getElementById('cart_count');
+		const cartCounterheader = document.getElementById('cartBtn');
+		if (cartCounter) {
+			cartCounter.textContent = `Cart (${cart.item_count})`;
+		}
+		if (cartCounterheader) {
+			cartCounterheader.textContent = `Cart (${cart.item_count})`;
+		}
 
 		// ПІДКЛЮЧАЄМО слухачі до кнопок
 		setupCartQtyButtons();
@@ -827,6 +874,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			// отримуємо оновлений cart
 			const cart = await fetch('/cart.js').then(res => res.json());
 
+			const cartCounter = document.getElementById('cart_count');
+			const cartCounterheader = document.getElementById('cartBtn');
+			if (cartCounter) {
+				cartCounter.textContent = `Cart (${cart.item_count})`;
+			}
+			if (cartCounterheader) {
+				cartCounterheader.textContent = `Cart (${cart.item_count})`;
+			}
+
 			// перемальовуємо
 			renderCart(cart);
 		});
@@ -836,7 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		cartItems.innerHTML = '';
 
 		if (cart.items.length === 0) {
-			cartItems.innerHTML = '<p>Кошик порожній</p>';
+			cartItems.innerHTML = '<p class="cart__fetch">Cart is empty...</p>';
 		} else {
 			cart.items.forEach(item => {
 				const card = `
@@ -857,6 +913,61 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+//////////чекаут кнопк//////////
+document.addEventListener('DOMContentLoaded', () => {
+	const checkoutContainer = document.getElementById('checkout');
+
+	if (checkoutContainer) {
+		const checkoutBtn = checkoutContainer.querySelector('button');
+		if (checkoutBtn) {
+			checkoutBtn.addEventListener('click', () => {
+				// Переходимо на сторінку оформлення замовлення
+				window.location.href = '/checkout';
+			});
+		}
+	}
+});
+
+
+
+/////////////////////////////buy now button///////////////////////
+document.addEventListener('DOMContentLoaded', () => {
+	const buyNowBtn = document.querySelector('.button_standart.buy');
+
+	if (buyNowBtn) {
+		buyNowBtn.addEventListener('click', async (e) => {
+			e.preventDefault();
+
+			// шукаємо форму Add to Cart (вона завжди є поруч)
+			const productDetails = buyNowBtn.closest('.product_details');
+			const addToCartForm = productDetails.querySelector('form[id^="product-form-"]');
+
+			const variantSelect = addToCartForm.querySelector('select[name="id"]');
+			const qtyInput = addToCartForm.querySelector('input[name="quantity"]');
+
+			const variantId = variantSelect.value;
+			const qty = qtyInput.value;
+
+			if (!variantId) {
+				alert('Виберіть варіант товару');
+				return;
+			}
+
+			// додаємо товар у корзину
+			const formData = new FormData();
+			formData.append('id', variantId);
+			formData.append('quantity', qty);
+
+			await fetch('/cart/add.js', {
+				method: 'POST',
+				body: formData
+			});
+
+			// ведемо одразу в checkout
+			window.location.href = '/checkout';
+		});
+	}
+});
 
 
 
@@ -887,18 +998,3 @@ cartClose.addEventListener('click', closeCartFunc);
 cartOverlay.addEventListener('click', closeCartFunc);
 
 
-
-//////////чекаут кнопк//////////
-document.addEventListener('DOMContentLoaded', () => {
-	const checkoutContainer = document.getElementById('checkout');
-
-	if (checkoutContainer) {
-		const checkoutBtn = checkoutContainer.querySelector('button');
-		if (checkoutBtn) {
-			checkoutBtn.addEventListener('click', () => {
-				// Переходимо на сторінку оформлення замовлення
-				window.location.href = '/checkout';
-			});
-		}
-	}
-});

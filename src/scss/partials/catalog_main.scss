@@ -193,6 +193,68 @@
 	}
 }
 
+.filters_items{
+	.title_wrapper{
+		display: flex;
+		justify-content: space-between;
+		.filter-close{
+			background: none;
+			border: none;
+			font-size: 34px;
+			cursor: pointer;
+			display: none;
+		}
+	}
+}
+
+
+@media (max-width: 768px) {
+	.catalog_main .container .filters_wrapper {
+		position: fixed; // щоб блок перекривав контент
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%; // або 100% якщо хочеш на весь екран
+		background: #fff;
+		z-index: 2000;
+
+		// Початковий стан – схований зліва
+		transform: translateX(-100%);
+		transition: transform 0.4s ease-in-out;
+		box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+
+		form {
+			display: flex;
+			justify-content: center;
+		}
+
+		&.active {
+			// При відкритті виїжджає в нуль
+			transform: translateX(0);
+		}
+	}
+
+
+	// щоб на мобільному товари не зміщувались
+	.items_block {
+		flex: 1;
+		width: 100%;
+	}
+
+	.catalog_main .container .filters_items{
+		padding: 30px 0 0 0 ;
+	}
+
+	.filter-close{
+		display: block!important;
+	}
+
+	.catalog_main .container .filters_items{
+		max-height: calc(100vh - 130px);
+	}
+
+}
+
 
 @media (max-width: 1280px){
 	.catalog_main .items_card{
