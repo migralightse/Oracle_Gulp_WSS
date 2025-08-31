@@ -7,8 +7,8 @@
 
 	&__top {
 		display: flex;
-		justify-content: space-evenly;
-		gap: 40px;
+		justify-content: center;
+		gap: 147px;
 		padding: 50px 0 50px 0;
 		border-top: 1px solid #eee;
 	}
@@ -81,10 +81,11 @@
 
 	&__bottom {
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: center;
+		gap: 175px;
 		border-top: 1px solid #eee;
 		padding-top: 30px;
-		gap: 20px;
+
 	}
 
 	&__selects {
@@ -141,11 +142,14 @@
 }
 
 @media (max-width: 575px) {
+	.footer{
+		padding: 0 0 30px 0 !important;
+	}
 	.footer__top {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr); // 2 колонки
-		gap: 30px;
-		padding: 30px 15px;
+		gap: 30px!important;
+		padding: 30px 15px!important;
 
 		// всі колонки однакові
 		.footer__column {
@@ -188,11 +192,12 @@
 	}
 	.footer__bottom{
 		display: grid;
-		padding: 30px 15px;
+		gap: 15px!important;
+		padding-top: 30px;
 	}
 	.footer__selects{
 		display: grid;
-		gap: 15px;
+		gap: 15px!important;
 	}
 	.footer__payments{
 		justify-content: space-around;
@@ -201,12 +206,27 @@
 }
 
 
-@media (max-width: 1280px) {
+@media (max-width: 1199px) {
 	.footer__top{
 		flex-wrap: wrap;
+		gap: 15px!important;
+
 	}
 	.footer__bottom{
 		flex-wrap: wrap;
+		gap: 15px!important;
+	}
+}
+
+
+@media (max-width: 1579px) {
+	.footer__top{
+		justify-content: space-evenly;
+		gap: 0;
+	}
+	.footer__bottom{
+		justify-content: space-evenly;
+		gap: 0;
 	}
 }
 

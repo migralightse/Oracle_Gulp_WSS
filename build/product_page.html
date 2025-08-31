@@ -22,8 +22,13 @@
 
 <!-- Слайдер фільтрів колекції -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
 
+<!-- Fancybox CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
 
+<!-- Fancybox JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
 
 </head>
@@ -48,50 +53,322 @@
 		<div class="overlay" id="overlay"></div>
 		<nav class="mobile-menu" id="mobileMenu">
 			<div class="container">
-				<button class="btn-close" id="closeMenu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
-				</svg></button>
+				<button class="btn-close" id="closeMenu">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							  d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z"
+							  fill="black"/>
+					</svg>
+				</button>
 				<ul class="mobile-menu__list" id="mobileMenuList">
-					<!-- JavaScript -->
+					<li class="mobile-menu__item">
+						<div class="mobile-menu_wrapper">
+							<a href="/collections/collections_oracle_test" class="mobile-menu__link">Jewelry</a>
+							<span class="submenu-toggle">
+        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.0914741 1.15274C0.0329301 1.09641 0 1.01975 0 0.939769C0 0.859789 0.0329301 0.783122 0.0914741 0.726801L0.747073 0.0908974C0.80319 0.0328999 0.881541 0 0.963544 0C1.04555 0 1.1239 0.0328999 1.18002 0.0908974L6.86393 5.60406C6.95095 5.68836 6.99989 5.80272 7 5.92201V6.07799C6.99989 6.19728 6.95095 6.31164 6.86393 6.39594L1.18002 11.9091C1.1239 11.9671 1.04555 12 0.963544 12C0.881541 12 0.80319 11.9671 0.747073 11.9091L0.0914741 11.2732C0.0329301 11.2169 0 11.1402 0 11.0602C0 10.9803 0.0329301 10.9036 0.0914741 10.8473L5.08887 6L0.0914741 1.15274Z" fill="black"/>
+        </svg>
+      </span>
+						</div>
+
+						<ul class="mobile-submenu__list">
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Rings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Wedding rings</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For an engagement</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Phalanx</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Bracelets</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Soft</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Straunch</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">On a thread</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Leather</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For charms</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Earrings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Earrings - pendants</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Broaches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сloves</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Congo</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Cafes</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Necklaces</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Invisible</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Multi-layered</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/search" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Unusual Jewelry</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Brooches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сrosses</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+					<li class="mobile-menu__item">
+						<div class="mobile-menu_wrapper">
+						<a href="/" class="mobile-menu__link">Collections</a>
+							<span class="submenu-toggle">
+        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.0914741 1.15274C0.0329301 1.09641 0 1.01975 0 0.939769C0 0.859789 0.0329301 0.783122 0.0914741 0.726801L0.747073 0.0908974C0.80319 0.0328999 0.881541 0 0.963544 0C1.04555 0 1.1239 0.0328999 1.18002 0.0908974L6.86393 5.60406C6.95095 5.68836 6.99989 5.80272 7 5.92201V6.07799C6.99989 6.19728 6.95095 6.31164 6.86393 6.39594L1.18002 11.9091C1.1239 11.9671 1.04555 12 0.963544 12C0.881541 12 0.80319 11.9671 0.747073 11.9091L0.0914741 11.2732C0.0329301 11.2169 0 11.1402 0 11.0602C0 10.9803 0.0329301 10.9036 0.0914741 10.8473L5.08887 6L0.0914741 1.15274Z" fill="black"/>
+        </svg>
+      </span>
+						</div>
+						<ul class="mobile-submenu__list">
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Rings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Wedding rings</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For an engagement</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Phalanx</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Bracelets</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Soft</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Straunch</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">On a thread</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Leather</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For charms</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Earrings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Earrings - pendants</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Broaches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сloves</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Congo</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Cafes</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Necklaces</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Invisible</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Multi-layered</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/search" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Unusual Jewelry</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Brooches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сrosses</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+					<li class="mobile-menu__item">
+						<div class="mobile-menu_wrapper">
+							<a href="/" class="mobile-menu__link">Blog</a>
+							<span class="submenu-toggle">
+        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.0914741 1.15274C0.0329301 1.09641 0 1.01975 0 0.939769C0 0.859789 0.0329301 0.783122 0.0914741 0.726801L0.747073 0.0908974C0.80319 0.0328999 0.881541 0 0.963544 0C1.04555 0 1.1239 0.0328999 1.18002 0.0908974L6.86393 5.60406C6.95095 5.68836 6.99989 5.80272 7 5.92201V6.07799C6.99989 6.19728 6.95095 6.31164 6.86393 6.39594L1.18002 11.9091C1.1239 11.9671 1.04555 12 0.963544 12C0.881541 12 0.80319 11.9671 0.747073 11.9091L0.0914741 11.2732C0.0329301 11.2169 0 11.1402 0 11.0602C0 10.9803 0.0329301 10.9036 0.0914741 10.8473L5.08887 6L0.0914741 1.15274Z" fill="black"/>
+        </svg>
+      </span>
+						</div>
+						<ul class="mobile-submenu__list">
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Rings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Wedding rings</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For an engagement</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Phalanx</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Bracelets</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Soft</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Straunch</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">On a thread</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Leather</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For charms</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Earrings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Earrings - pendants</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Broaches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сloves</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Congo</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Cafes</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Necklaces</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Invisible</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Multi-layered</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/search" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Unusual Jewelry</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Brooches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сrosses</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+
+					<li class="mobile-menu__item">
+						<div class="mobile-menu_wrapper">
+							<a href="/" class="mobile-menu__link">Contacts</a>
+							<span class="submenu-toggle">
+        <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.0914741 1.15274C0.0329301 1.09641 0 1.01975 0 0.939769C0 0.859789 0.0329301 0.783122 0.0914741 0.726801L0.747073 0.0908974C0.80319 0.0328999 0.881541 0 0.963544 0C1.04555 0 1.1239 0.0328999 1.18002 0.0908974L6.86393 5.60406C6.95095 5.68836 6.99989 5.80272 7 5.92201V6.07799C6.99989 6.19728 6.95095 6.31164 6.86393 6.39594L1.18002 11.9091C1.1239 11.9671 1.04555 12 0.963544 12C0.881541 12 0.80319 11.9671 0.747073 11.9091L0.0914741 11.2732C0.0329301 11.2169 0 11.1402 0 11.0602C0 10.9803 0.0329301 10.9036 0.0914741 10.8473L5.08887 6L0.0914741 1.15274Z" fill="black"/>
+        </svg>
+      </span>
+						</div>
+						<ul class="mobile-submenu__list">
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Rings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Wedding rings</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For an engagement</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Phalanx</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Bracelets</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Soft</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Straunch</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">On a thread</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Leather</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">For charms</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Earrings</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Earrings - pendants</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Broaches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сloves</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Congo</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Cafes</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Necklaces</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Invisible</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Multi-layered</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">With a pearl</a></li>
+									<li><a href="/search" class="mobile-subsubmenu__link">With a diamond</a></li>
+								</ul>
+							</li>
+
+							<li class="mobile-submenu__item">
+								<a href="/" class="mobile-submenu__link">Unusual Jewelry</a>
+								<ul class="mobile-subsubmenu__list">
+									<li><a href="/" class="mobile-subsubmenu__link">Brooches</a></li>
+									<li><a href="/" class="mobile-subsubmenu__link">Сrosses</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
 				</ul>
+
 			</div>
 
 			<div class="account">
-				<a href="#"><span><svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="8.57897" cy="6.27803" r="4.77803" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M1.00002 17.7013C0.998732 17.3654 1.07385 17.0336 1.2197 16.7311C1.67736 15.8157 2.96798 15.3306 4.03892 15.1109C4.81128 14.9461 5.59431 14.836 6.38217 14.7814C7.84084 14.6533 9.30793 14.6533 10.7666 14.7814C11.5544 14.8366 12.3374 14.9467 13.1099 15.1109C14.1808 15.3306 15.4714 15.77 15.9291 16.7311C16.2224 17.3479 16.2224 18.0639 15.9291 18.6807C15.4714 19.6418 14.1808 20.0812 13.1099 20.2917C12.3384 20.4633 11.5551 20.5766 10.7666 20.6304C9.57937 20.731 8.38659 20.7494 7.19681 20.6853C6.92221 20.6853 6.65677 20.6853 6.38217 20.6304C5.59663 20.5772 4.81632 20.464 4.04807 20.2917C2.96798 20.0812 1.68652 19.6418 1.2197 18.6807C1.0746 18.3746 0.999552 18.04 1.00002 17.7013Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				<a href="#"><span><svg width="17" height="22" viewBox="0 0 17 22" fill="none"
+									   xmlns="http://www.w3.org/2000/svg">
+  <circle cx="8.57897" cy="6.27803" r="4.77803" stroke="black" stroke-width="1.5" stroke-linecap="round"
+		  stroke-linejoin="round"/>
+  <path fill-rule="evenodd" clip-rule="evenodd"
+		d="M1.00002 17.7013C0.998732 17.3654 1.07385 17.0336 1.2197 16.7311C1.67736 15.8157 2.96798 15.3306 4.03892 15.1109C4.81128 14.9461 5.59431 14.836 6.38217 14.7814C7.84084 14.6533 9.30793 14.6533 10.7666 14.7814C11.5544 14.8366 12.3374 14.9467 13.1099 15.1109C14.1808 15.3306 15.4714 15.77 15.9291 16.7311C16.2224 17.3479 16.2224 18.0639 15.9291 18.6807C15.4714 19.6418 14.1808 20.0812 13.1099 20.2917C12.3384 20.4633 11.5551 20.5766 10.7666 20.6304C9.57937 20.731 8.38659 20.7494 7.19681 20.6853C6.92221 20.6853 6.65677 20.6853 6.38217 20.6304C5.59663 20.5772 4.81632 20.464 4.04807 20.2917C2.96798 20.0812 1.68652 19.6418 1.2197 18.6807C1.0746 18.3746 0.999552 18.04 1.00002 17.7013Z"
+		stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></span>Account</a>
 			</div>
 		</nav>
 
 		<div class="header_logo">
-			<a href="#" class="logo">
+			<a href="index.html" class="logo">
 				<img src="img/logo_white.svg" class="logo__img logo__img--white" alt="Logo white"/>
 				<img src="img/logo_black.svg" class="logo__img logo__img--black" alt="Logo black"/>
 			</a>
 		</div>
 		<nav class="header_nav">
 			<ul class="nav__list">
-				<li data-menu="jewelry"><a href="#" class="nav-item" data-menu="jewelry">Jewelry</a></li>
-				<li data-menu="collections"><a href="#" class="nav-item" data-menu="collections">Collections test</a></li>
-				<li data-menu="Blog"><a href="#" class="nav-item" data-menu="Blog">Blog</a></li>
-				<li data-menu="Contacts"><a href="#" class="nav-item" data-menu="Contacts">Contacts</a></li>
+				<li data-menu="jewelry"><a href="catalog_page.html" class="nav-item" data-menu="jewelry">Jewelry</a></li>
+				<li data-menu="collections"><a href="catalog_page.html" class="nav-item" data-menu="collections">Collections</a></li>
+				<li data-menu="Blog"><a href="catalog_page.html" class="nav-item" data-menu="Blog">Blog</a></li>
+				<li data-menu="Contacts"><a href="catalog_page.html" class="nav-item" data-menu="Contacts">Contacts</a></li>
 			</ul>
 		</nav>
+
+
 	</div>
 
 
 	<div class="header_right">
 		<nav class="header_nav">
 			<div class="mobile_nav_list">
-				<a class="mobile_nav_link"> <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<circle cx="8.16667" cy="8.16667" r="6.66667" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M13.182 13.571L16.1187 16.5001" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg></a>
-				<a class="mobile_nav_link" id="cartImgMob"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M12.1441 6.75412V4.22745C12.1441 2.49078 10.7366 1.08328 9.00076 1.08328C7.26409 1.07578 5.84992 2.47662 5.84242 4.21328V4.22745V6.75412" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M12.9518 16.5003H5.04815C3.08808 16.5003 1.5 14.9128 1.5 12.9545V8.35785C1.5 6.39951 3.08808 4.81201 5.04815 4.81201H12.9518C14.9119 4.81201 16.5 6.39951 16.5 8.35785V12.9545C16.5 14.9128 14.9119 16.5003 12.9518 16.5003Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-				</svg></a>
+				<a class="mobile_nav_link">
+					<svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="8.16667" cy="8.16667" r="6.66667" stroke="white" stroke-width="1.5"
+								stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M13.182 13.571L16.1187 16.5001" stroke="white" stroke-width="1.5"
+							  stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</a>
+				<a class="mobile_nav_link" id="cartImgMob">
+					<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M12.1441 6.75412V4.22745C12.1441 2.49078 10.7366 1.08328 9.00076 1.08328C7.26409 1.07578 5.84992 2.47662 5.84242 4.21328V4.22745V6.75412"
+							stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							  d="M12.9518 16.5003H5.04815C3.08808 16.5003 1.5 14.9128 1.5 12.9545V8.35785C1.5 6.39951 3.08808 4.81201 5.04815 4.81201H12.9518C14.9119 4.81201 16.5 6.39951 16.5 8.35785V12.9545C16.5 14.9128 14.9119 16.5003 12.9518 16.5003Z"
+							  stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</a>
 			</div>
 			<ul class="nav__list">
 				<li><a class="nav_link">
@@ -103,7 +380,7 @@
 							  stroke-linecap="round" stroke-linejoin="round"/>
 					</svg>
 				</a>
-					<a class="nav_link"  href="#">Search</a></li>
+					<a class="nav_link" href="#">Search</a></li>
 				<li>
 					<a class="nav_link">
 						<svg width="15" height="17" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +393,7 @@
 					</a>
 					<a class="nav_link" href="#">Account</a></li>
 				<li>
-					<a class="nav_link" id="cartImg" >
+					<a class="nav_link" id="cartImg">
 						<svg width="15" height="16" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M13.7729 8.30504V5.27304C13.7729 3.18904 12.0839 1.50004 10.0009 1.50004C7.91688 1.49104 6.21988 3.17204 6.21088 5.25604V5.27304V8.30504"
@@ -130,10 +407,11 @@
 					<a class="nav_link" id="cartBtn">Cart (2)</a></li>
 			</ul>
 		</nav>
+
 	</div>
 
 	<div class="submenu" id="submenu">
-		<div class="submenu-content" data-content="jewelry">
+		<div class="submenu-content " data-content="jewelry">
 			<div class="submenu-content__block">
 				<h2 class="submenu-content__block_title">Rings</h2>
 				<ul class="submenu-content__block__list">
@@ -236,40 +514,13 @@
 					<li><a href="#" class="block__link">With a diamond</a></li>
 				</ul>
 			</div>
-			<div class="submenu-content__block"><h2 class="submenu-content__block_title">Necklaces</h2>
+			<div class="submenu-content__block"><h2 class="submenu-content__block_title">Bracelets</h2>
 				<ul class="submenu-content__block__list">
-					<li><a href="#" class="block__link">Invisible</a></li>
-					<li><a href="#" class="block__link">Multi-layered</a></li>
-					<li><a href="#" class="block__link">With a pearl</a></li>
-					<li><a href="#" class="block__link">With a diamond</a></li>
-				</ul>
-			</div>
-			<div class="submenu-content__block">
-				<h2 class="submenu-content__block_title">Unusual Jewelry</h2>
-				<ul class="submenu-content__block__list">
-					<li><a href="#" class="block__link">Brooches</a></li>
-					<li><a href="#" class="block__link">Сrosses</a></li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="submenu-content" data-content="Contacts">
-			<div class="submenu-content__block">
-				<h2 class="submenu-content__block_title">Rings</h2>
-				<ul class="submenu-content__block__list">
-					<li><a href="#" class="block__link">Wedding rings</a></li>
-					<li><a href="#" class="block__link">For an engagement</a></li>
-					<li><a href="#" class="block__link">Phalanx</a></li>
-					<li><a href="#" class="block__link">With a pearl</a></li>
-					<li><a href="#" class="block__link">With a diamond</a></li>
-				</ul>
-			</div>
-			<div class="submenu-content__block"><h2 class="submenu-content__block_title">Necklaces</h2>
-				<ul class="submenu-content__block__list">
-					<li><a href="#" class="block__link">Invisible</a></li>
-					<li><a href="#" class="block__link">Multi-layered</a></li>
-					<li><a href="#" class="block__link">With a pearl</a></li>
-					<li><a href="#" class="block__link">With a diamond</a></li>
+					<li><a href="#" class="block__link">Soft</a></li>
+					<li><a href="#" class="block__link">Straunch</a></li>
+					<li><a href="#" class="block__link">On a thread</a></li>
+					<li><a href="#" class="block__link">Leather</a></li>
+					<li><a href="#" class="block__link">For charms</a></li>
 				</ul>
 			</div>
 			<div class="submenu-content__block"><h2 class="submenu-content__block_title">Earrings</h2>
@@ -297,8 +548,7 @@
 				</ul>
 			</div>
 		</div>
-
-		<div class="submenu-content" data-content="Account">
+		<div class="submenu-content" data-content="Contacts">
 			<div class="submenu-content__block"><h2 class="submenu-content__block_title">Rings</h2>
 				<ul class="submenu-content__block__list">
 					<li><a href="#" class="block__link">Wedding rings</a></li>
@@ -346,7 +596,9 @@
 			</div>
 		</div>
 
+
 	</div>
+
 </div>
 
 
@@ -365,7 +617,7 @@
 			</svg>
 		</button>
 	</div>
-
+<div class="items_card__wrapper">
 	<div class="items_card cart">
 		<div class="card" data-badge="new">
 			<div class="card_image cart">
@@ -373,7 +625,7 @@
 				<a href="#">
 					<img src="img/item1.png" alt="">
 				</a>
-<!--				<div class="view-more">View More</div>-->
+				<!--				<div class="view-more">View More</div>-->
 			</div>
 			<div class="cart-item-info">
 				<div class="cart-item__title">
@@ -394,7 +646,7 @@
 				</div>
 				<div class="product_det">
 					<p class="product__name">Selling plan:</p>
-					<p class="product__var">Delivery every 30 days</p>
+					<p class="product__var">Delivery 30 days</p>
 				</div>
 
 				<div class="quantity">
@@ -415,6 +667,58 @@
 		</div>
 
 	</div>
+	<div class="items_card cart">
+		<div class="card" data-badge="new">
+			<div class="card_image cart">
+				<span class="product-badge">New</span>
+				<a href="#">
+					<img src="img/item1.png" alt="">
+				</a>
+				<!--				<div class="view-more">View More</div>-->
+			</div>
+			<div class="cart-item-info">
+				<div class="cart-item__title">
+					<h4>Kazaur Weaving Ring</h4>
+					<button class="remove"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
+					</svg></button>
+				</div>
+
+				<p class="price">$132.00</p>
+				<div class="product_det">
+					<p class="product__name">Material:</p>
+					<p class="product__var">Golden</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Size:</p>
+					<p class="product__var">16,5</p>
+				</div>
+				<div class="product_det">
+					<p class="product__name">Selling plan:</p>
+					<p class="product__var">Delivery 30 days</p>
+				</div>
+
+				<div class="quantity">
+	<div class="quantity-control cart">
+		<button class="qty-btn">
+			<img src="img/minus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+		<span class="qty-value">1</span>
+		<button class="qty-btn">
+			<img src="img/plus.svg" alt="Зменшити кількість" width="16" height="26">
+		</button>
+	</div>
+</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+
 
 		<div class="cart-footer">
 			<div class="subtotal">
@@ -445,23 +749,23 @@
 	<div class="container">
 		<div class="image_details">
 			<div class="images_details_top">
-				<a>
+				<a data-fancybox="gallery" href="img/image_product_4.png">
 					<img id="mainImage" src="img/image_product_4.png" alt="main image">
 				</a>
 				<span class="product-badge">New</span>
 			</div>
 			<div class="images_details_bottom">
 				<div class="images_details_small">
-					<a><img src="img/image_product_1.png" alt="thumb1" data-src="../../img/image_details2.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_1.png"><img src="img/image_product_1.png" alt="thumb1" data-src="../../img/image_details2.png"></a>
 				</div>
 				<div class="images_details_small">
-					<a><img src="img/image_product_3.jpg" alt="thumb2" data-src="../../img/image_details1.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_3.jpg"><img src="img/image_product_3.jpg" alt="thumb2" data-src="../../img/image_details1.png"></a>
 				</div>
 				<div class="images_details_small">
-					<a><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_2.png"><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
 				</div>
 				<div class="images_details_small">
-					<a><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_2.png"><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
 				</div>
 			</div>
 
@@ -503,16 +807,16 @@
 					<div class="product_details__filters">
 						<div class="filters_title">Choose Qty:</div>
 						<div class="quantity">
-	<div class="quantity-control cart">
-		<button class="qty-btn">
-			<img src="img/minus.svg" alt="Зменшити кількість" width="16" height="26">
-		</button>
-		<span class="qty-value">1</span>
-		<button class="qty-btn">
-			<img src="img/plus.svg" alt="Зменшити кількість" width="16" height="26">
-		</button>
-	</div>
-</div>
+							<div class="quantity-control">
+								<button class="qty-btn">
+									<img src="img/minus.svg" alt="Зменшити кількість" width="16" height="26">
+								</button>
+								<span class="qty-value">1</span>
+								<button class="qty-btn">
+									<img src="img/plus.svg" alt="Зменшити кількість" width="16" height="26">
+								</button>
+							</div>
+						</div>
 
 					</div>
 				</div>
@@ -621,42 +925,42 @@
 	<div class="card" data-badge="new">
 		<div class="card_image">
 			<span class="product-badge">New</span>
-			<a href="#">
+			<a href="product_page.html" >
 				<img src="img/item1.png" alt="">
 			</a>
 			<div class="view-more">View More</div>
 		</div>
-		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<a href="product_page.html" class="card_title">Kazaur Weaving Ring</a>
 		<div class="tax">$132.00</div>
 	</div>
 	<div class="card" data-badge="new">
 		<div class="card_image">
-			<a href="#">
+			<a href="product_page.html">
 				<img src="img/item2.png" alt="">
 			</a>
 			<div class="view-more">View More</div>
 		</div>
-		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<a href="product_page.html" class="card_title">Kazaur Weaving Ring</a>
 		<div class="tax">$132.00</div>
 	</div>
 	<div class="card" data-badge="new">
 		<div class="card_image">
-			<a href="#">
+			<a href="product_page.html">
 				<img src="img/item3.png" alt="">
 			</a>
 			<div class="view-more">View More</div>
 		</div>
-		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<a href="product_page.html" class="card_title">Kazaur Weaving Ring</a>
 		<div class="tax">$132.00</div>
 	</div>
 	<div class="card" data-badge="new">
 		<div class="card_image">
-			<a href="#">
+			<a href="product_page.html">
 				<img src="img/item4.jpg" alt="">
 			</a>
 			<div class="view-more">View More</div>
 		</div>
-		<a href="#" class="card_title">Kazaur Weaving Ring</a>
+		<a href="product_page.html" class="card_title">Kazaur Weaving Ring</a>
 		<div class="tax">$132.00</div>
 	</div>
 </div>

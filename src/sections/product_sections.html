@@ -2,23 +2,23 @@
 	<div class="container">
 		<div class="image_details">
 			<div class="images_details_top">
-				<a>
+				<a data-fancybox="gallery" href="img/image_product_4.png">
 					<img id="mainImage" src="img/image_product_4.png" alt="main image">
 				</a>
 				<span class="product-badge">New</span>
 			</div>
 			<div class="images_details_bottom">
 				<div class="images_details_small">
-					<a><img src="img/image_product_1.png" alt="thumb1" data-src="../../img/image_details2.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_1.png"><img src="img/image_product_1.png" alt="thumb1" data-src="../../img/image_details2.png"></a>
 				</div>
 				<div class="images_details_small">
-					<a><img src="img/image_product_3.jpg" alt="thumb2" data-src="../../img/image_details1.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_3.jpg"><img src="img/image_product_3.jpg" alt="thumb2" data-src="../../img/image_details1.png"></a>
 				</div>
 				<div class="images_details_small">
-					<a><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_2.png"><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
 				</div>
 				<div class="images_details_small">
-					<a><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
+					<a data-fancybox="gallery" href="img/image_product_2.png"><img src="img/image_product_2.png" alt="thumb3" data-src="../../img/image_details3.png"></a>
 				</div>
 			</div>
 
@@ -59,7 +59,18 @@
 					</div>
 					<div class="product_details__filters">
 						<div class="filters_title">Choose Qty:</div>
-						@@include('../partials/quantity.html')
+						<div class="quantity">
+							<div class="quantity-control">
+								<button class="qty-btn">
+									<img src="img/minus.svg" alt="Зменшити кількість" width="16" height="26">
+								</button>
+								<span class="qty-value">1</span>
+								<button class="qty-btn">
+									<img src="img/plus.svg" alt="Зменшити кількість" width="16" height="26">
+								</button>
+							</div>
+						</div>
+
 					</div>
 				</div>
 				<div class="gift_items__button">

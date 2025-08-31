@@ -13,7 +13,7 @@
 
 
 			.card_image {
-				width: 354px;
+				width: auto;
 				height: 441px;
 				overflow: hidden;
 				position: relative;
@@ -99,7 +99,7 @@
 		.items_card{
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
-			padding: 0 15px;
+
 			gap: 15px;
 
 		}

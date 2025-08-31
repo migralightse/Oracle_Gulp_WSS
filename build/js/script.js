@@ -1,7 +1,7 @@
 ////////////////////////////scroll////////////////////
 window.addEventListener('DOMContentLoaded', function () {
   // Якщо на сторінці є секція catalog_main — додаємо клас
-  if (document.querySelector('.catalog_main, .product_page, .cart_main ')) {
+  if (document.querySelector('.catalog_main, .product_page, .cart_main')) {
     document.body.classList.add('white_header');
   }
   const navLinks = document.querySelectorAll('.header_nav .nav__list li > a');
@@ -18,9 +18,7 @@ window.addEventListener('DOMContentLoaded', function () {
     headerBottom?.classList.add('scrolled');
 
     // Додаємо клас для svg path в активних submenu-toggle
-    document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => {
-      path.classList.add('active');
-    });
+    document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => path.classList.add('active'));
   };
   const removeScrolledClasses = () => {
     navLinks.forEach(el => el.classList.remove('scrolled'));
@@ -30,13 +28,12 @@ window.addEventListener('DOMContentLoaded', function () {
     headerBottom?.classList.remove('scrolled');
 
     // Знімаємо клас для svg path в активних submenu-toggle
-    document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => {
-      path.classList.remove('active');
-    });
+    document.querySelectorAll('.header .header_left .header_nav .nav__list .submenu-toggle svg path').forEach(path => path.classList.remove('active'));
   };
   if (document.body.classList.contains('white_header')) {
     // Каталог — одразу білий хедер
     headerBottom?.classList.add('scrolled_top');
+    document.body.classList.add('scrolled');
     applyScrolledClasses();
   } else {
     // Головна — тільки при скролі
@@ -45,9 +42,11 @@ window.addEventListener('DOMContentLoaded', function () {
       const styleThreshold = 450;
       if (window.scrollY > moveThreshold) {
         headerBottom?.classList.add('scrolled_top');
+        document.body.classList.add('scrolled');
         header__top?.classList.add('slide-up');
       } else {
         headerBottom?.classList.remove('scrolled_top');
+        document.body.classList.remove('scrolled');
         header__top?.classList.remove('slide-up');
       }
       if (window.scrollY > styleThreshold) {
@@ -560,401 +559,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-////////////////////////лічильник продуктів////////////////////////////////////////
-document.querySelectorAll('.product_details').forEach(product => {
-  const qtyControl = product.querySelector('.quantity-control');
-  const qtyValue = qtyControl.querySelector('.qty-value');
-  const form = product.querySelector('form[id^="product-form-"]'); // форма цього продукту
-  const qtyInput = form.querySelector('input[name="quantity"]'); // hidden всередині форми
-  const [minusBtn, plusBtn] = qtyControl.querySelectorAll('.qty-btn');
-  minusBtn.addEventListener('click', () => {
-    let current = parseInt(qtyValue.textContent, 10);
-    if (current > 1) current--;
-    qtyValue.textContent = current;
-    qtyInput.value = current;
-  });
-  plusBtn.addEventListener('click', () => {
-    let current = parseInt(qtyValue.textContent, 10);
-    current++;
-    qtyValue.textContent = current;
-    qtyInput.value = current;
-  });
-});
-
-//////////////////////////////лічильник в кошику///////////////////////
-function setupCartQtyButtons() {
-  const qtyButtons = document.querySelectorAll('.quantity-control.cart .qty-btn');
-  qtyButtons.forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const key = btn.dataset.key;
-      const action = btn.dataset.action;
-      const qtyEl = btn.parentElement.querySelector('.qty-value');
-      let currentQty = parseInt(qtyEl.textContent, 10);
-      let newQty = action === 'plus' ? currentQty + 1 : currentQty - 1;
-      if (newQty < 1) newQty = 1;
-      const formData = new FormData();
-      formData.append('quantity', newQty);
-      formData.append('id', key);
-      await fetch('/cart/change.js', {
-        method: 'POST',
-        body: formData
-      });
-
-      // Оновлюємо корзину
-      const cart = await fetch('/cart.js').then(res => res.json());
-      renderCart(cart);
-    });
-  });
-}
-
-/////////////////button add to cart//////////////////
-document.addEventListener('DOMContentLoaded', () => {
-  const cartForms = document.querySelectorAll('form[id^="product-form-"]');
-  cartForms.forEach(form => {
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const variantSelect = form.querySelector('select[name="id"]'); // name="id" завжди правильний
-      const qtyInput = form.querySelector('input.qty-input'); // інпут саме всередині цієї форми
-
-      const formData = new FormData();
-      formData.append('id', variantSelect.value);
-      formData.append('quantity', qtyInput.value);
-
-      // додаємо товар у кошик
-      await fetch('/cart/add.js', {
-        method: 'POST',
-        body: formData
-      });
-
-      // отримуємо оновлений cart
-      const cart = await fetch('/cart.js').then(res => res.json());
-
-      // перемальовуємо корзину
-      renderCart(cart);
-
-      // відкриваємо sidebar
-      document.getElementById('cartSidebar').classList.add('active');
-      document.getElementById('cartOverlay').classList.add('active');
-    });
-  });
-});
-
-///////////////////корзина////////////////////////////////////////
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const productForms = document.querySelectorAll('[id^="product-form-"]');
-  const cartSidebar = document.getElementById('cartSidebar');
-  const cartOverlay = document.getElementById('cartOverlay');
-
-  // 🔹 Стартове завантаження кошика
-  const cart = await fetch('/cart.js').then(res => res.json());
-  renderCart(cart);
-
-  // 🔹 Додавання товару з картки
-  productForms.forEach(productForm => {
-    productForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const formData = new FormData(productForm);
-      await fetch('/cart/add.js', {
-        method: 'POST',
-        body: formData
-      });
-      const cart = await fetch('/cart.js').then(res => res.json());
-      renderCart(cart);
-      cartSidebar.classList.add('active');
-      cartOverlay.classList.add('active');
-    });
-  });
-
-  // === РЕНДЕР КОРЗИНИ (попап + сторінка) ===
-  function renderCart(cart) {
-    const cartSidebarItems = document.getElementById('cartItems');
-    const cartPageItems = document.getElementById('cartPageItems');
-
-    // --- POPUP ---
-    if (cartSidebarItems) {
-      cartSidebarItems.innerHTML = '';
-      if (cart.items.length === 0) {
-        cartSidebarItems.innerHTML = '<p class="cart__fetch">Cart is empty...</p>';
-      } else {
-        cart.items.forEach(item => {
-          const card = `
-					<div class="card">
-						<div class="card_image cart">
-							${item.featured_image ? `<a href="${item.url}"><img src="${item.featured_image.url}" alt="${item.title}"></a>` : ''}
-						</div>
-						<div class="cart-item-info">
-							<div class="cart-item__title">
-								<h4>${item.product_title}</h4>
-								<button class="remove" data-key="${item.key}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M5.28046 19.7849C4.98755 20.0778 4.51264 20.0778 4.21973 19.7849C3.92681 19.492 3.92681 19.0172 4.21973 18.7243L10.9427 12.0023L4.21969 5.28024C3.92677 4.98737 3.92677 4.51253 4.21969 4.21966C4.5126 3.92678 4.98751 3.92678 5.28042 4.21966L12.0034 10.9417L18.7265 4.21965C19.0194 3.92678 19.4943 3.92678 19.7872 4.21965C20.0801 4.51253 20.0801 4.98737 19.7872 5.28024L13.0642 12.0023L19.7872 18.7243C20.0801 19.0172 20.0801 19.492 19.7872 19.7849C19.4943 20.0778 19.0194 20.0778 18.7264 19.7849L12.0035 13.0629L5.28046 19.7849Z" fill="black"/>
-</svg></button>
-							</div>
-							<p class="price">${(item.final_line_price / 100).toFixed(2)} ${cart.currency}</p>
-							${item.options_with_values.map(opt => `
-								<div class="product_det">
-									<p class="product__name">${opt.name}:</p>
-									<p class="product__var">${opt.value}</p>
-								</div>
-							`).join('')}
-							<div class="quantity">
-								<div class="quantity-control">
-									<button class="qty-btn" data-action="minus" data-key="${item.key}">-</button>
-									<span class="qty-value">${item.quantity}</span>
-									<button class="qty-btn" data-action="plus" data-key="${item.key}">+</button>
-								</div>
-							</div>
-						</div>
-					</div>`;
-          cartSidebarItems.insertAdjacentHTML('beforeend', card);
-        });
-      }
-    }
-
-    // --- CART PAGE ---
-    if (cartPageItems) {
-      cartPageItems.innerHTML = '';
-      if (cart.items.length === 0) {
-        cartPageItems.innerHTML = '<p class="cart__fetch">Cart is empty...</p>';
-      } else {
-        cart.items.forEach(item => {
-          const card = `
-					<div class="items_card cart">
-						<div class="card">
-							<div class="card_image cart">
-								${item.featured_image ? `<a href="${item.url}"><img src="${item.featured_image.url}" alt="${item.title}"></a>` : ''}
-							</div>
-							<div class="cart-item-info">
-								<div class="cart-item_wrapper">
-									<div class="cart-item__title">
-										<h4>${item.product_title}</h4>
-									</div>
-									${item.options_with_values.map(opt => `
-										<div class="product_det">
-											<p class="product__name">${opt.name}:</p>
-											<p class="product__var">${opt.value}</p>
-										</div>
-									`).join('')}
-								</div>
-
-								<div class="quantity_wrapper">
-									<div class="quantity">
-										<div class="quantity-control">
-											<button class="qty-btn" data-action="minus" data-key="${item.key}">-</button>
-											<span class="qty-value">${item.quantity}</span>
-											<button class="qty-btn" data-action="plus" data-key="${item.key}">+</button>
-										</div>
-									</div>
-									<button class="remove" data-key="${item.key}"><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M20.25 5.1875H16.3125V4.25C16.3125 3.70299 16.0952 3.17839 15.7084 2.79159C15.3216 2.4048 14.797 2.1875 14.25 2.1875H9.75C9.20299 2.1875 8.67839 2.4048 8.29159 2.79159C7.9048 3.17839 7.6875 3.70299 7.6875 4.25V5.1875H3.75C3.60082 5.1875 3.45774 5.24676 3.35225 5.35225C3.24676 5.45774 3.1875 5.60082 3.1875 5.75C3.1875 5.89918 3.24676 6.04226 3.35225 6.14775C3.45774 6.25324 3.60082 6.3125 3.75 6.3125H4.6875V20C4.6875 20.3481 4.82578 20.6819 5.07192 20.9281C5.31806 21.1742 5.6519 21.3125 6 21.3125H18C18.3481 21.3125 18.6819 21.1742 18.9281 20.9281C19.1742 20.6819 19.3125 20.3481 19.3125 20V6.3125H20.25C20.3992 6.3125 20.5423 6.25324 20.6477 6.14775C20.7532 6.04226 20.8125 5.89918 20.8125 5.75C20.8125 5.60082 20.7532 5.45774 20.6477 5.35225C20.5423 5.24676 20.3992 5.1875 20.25 5.1875ZM8.8125 4.25C8.8125 4.00136 8.91127 3.7629 9.08709 3.58709C9.2629 3.41127 9.50136 3.3125 9.75 3.3125H14.25C14.4986 3.3125 14.7371 3.41127 14.9129 3.58709C15.0887 3.7629 15.1875 4.00136 15.1875 4.25V5.1875H8.8125V4.25ZM18.1875 20C18.1875 20.0497 18.1677 20.0974 18.1326 20.1326C18.0974 20.1677 18.0497 20.1875 18 20.1875H6C5.95027 20.1875 5.90258 20.1677 5.86742 20.1326C5.83225 20.0974 5.8125 20.0497 5.8125 20V6.3125H18.1875V20ZM10.3125 10.25V16.25C10.3125 16.3992 10.2532 16.5423 10.1477 16.6477C10.0423 16.7532 9.89918 16.8125 9.75 16.8125C9.60082 16.8125 9.45774 16.7532 9.35225 16.6477C9.24676 16.5423 9.1875 16.3992 9.1875 16.25V10.25C9.1875 10.1008 9.24676 9.95774 9.35225 9.85225C9.45774 9.74676 9.60082 9.6875 9.75 9.6875C9.89918 9.6875 10.0423 9.74676 10.1477 9.85225C10.2532 9.95774 10.3125 10.1008 10.3125 10.25ZM14.8125 10.25V16.25C14.8125 16.3992 14.7532 16.5423 14.6477 16.6477C14.5423 16.7532 14.3992 16.8125 14.25 16.8125C14.1008 16.8125 13.9577 16.7532 13.8523 16.6477C13.7468 16.5423 13.6875 16.3992 13.6875 16.25V10.25C13.6875 10.1008 13.7468 9.95774 13.8523 9.85225C13.9577 9.74676 14.1008 9.6875 14.25 9.6875C14.3992 9.6875 14.5423 9.74676 14.6477 9.85225C14.7532 9.95774 14.8125 10.1008 14.8125 10.25Z" fill="#D72C0D"/>
-</svg></button>
-								</div>
-
-								<div class="price_wrapper">
-									<p class="price">${(item.final_line_price / 100).toFixed(2)} ${cart.currency}</p>
-								</div>
-							</div>
-						</div>
-					</div>`;
-          cartPageItems.insertAdjacentHTML('beforeend', card);
-        });
-        cartPageItems.insertAdjacentHTML('beforeend', `
-					<div class="btn_continue">
-						<a href="/collections/all">Continue shopping</a>
-					</div>
-				`);
-      }
-    }
-
-    // --- SUBTOTAL ---
-    const subtotalEls = document.querySelectorAll('.subtotal__price');
-    subtotalEls.forEach(el => {
-      el.textContent = (cart.total_price / 100).toFixed(2) + ' ' + cart.currency;
-    });
-
-    // --- COUNTERS ---
-    const cartCounter = document.getElementById('cart_count');
-    const cartCounterheader = document.getElementById('cartBtn');
-    if (cartCounter) cartCounter.textContent = `Cart (${cart.item_count})`;
-    if (cartCounterheader) cartCounterheader.textContent = `Cart (${cart.item_count})`;
-
-    // --- ACTIONS ---
-    setupCartQtyButtons();
-    setupRemoveButtons();
-  }
-
-  // === Оновлення кількості ===
-  function setupCartQtyButtons() {
-    const qtyButtons = document.querySelectorAll('.qty-btn');
-    qtyButtons.forEach(btn => {
-      btn.onclick = async () => {
-        const key = btn.dataset.key;
-        const action = btn.dataset.action;
-        const qtyEl = btn.parentElement.querySelector('.qty-value');
-        let currentQty = parseInt(qtyEl.textContent, 10);
-        let newQty = action === 'plus' ? currentQty + 1 : currentQty - 1;
-        if (newQty < 1) newQty = 1;
-        const cart = await updateCartQuantity(key, newQty);
-        renderCart(cart);
-      };
-    });
-  }
-
-  // === Видалення товару ===
-  function setupRemoveButtons() {
-    const removeButtons = document.querySelectorAll('.remove');
-    removeButtons.forEach(btn => {
-      btn.onclick = async () => {
-        const key = btn.dataset.key;
-        const cart = await updateCartQuantity(key, 0);
-        renderCart(cart);
-      };
-    });
-  }
-
-  // === API update ===
-  async function updateCartQuantity(key, quantity) {
-    const res = await fetch('/cart/change.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: key,
-        quantity
-      })
-    });
-    return await res.json();
-  }
-});
-
-////////fetch///////
-document.addEventListener('DOMContentLoaded', () => {
-  const clearBtn = document.querySelector('.button_standart.fetch');
-  if (clearBtn) {
-    clearBtn.addEventListener('click', async () => {
-      // очищаємо корзину
-      await fetch('/cart/clear.js', {
-        method: 'POST'
-      });
-
-      // отримуємо оновлений cart
-      const cart = await fetch('/cart.js').then(res => res.json());
-
-      // перемальовуємо все
-      updateCartUI(cart);
-    });
-  }
-});
-
-/**
- * Оновлює UI корзини всюди (попап + сторінка)
- */
-function updateCartUI(cart) {
-  // 🔹 лічильники
-  const cartCounter = document.getElementById('cart_count');
-  const cartCounterHeader = document.getElementById('cartBtn');
-  if (cartCounter) {
-    cartCounter.textContent = `Cart (${cart.item_count})`;
-  }
-  if (cartCounterHeader) {
-    cartCounterHeader.textContent = `Cart (${cart.item_count})`;
-  }
-
-  // 🔹 попап
-  const popupCartItems = document.getElementById('cartItems');
-  if (popupCartItems) {
-    popupCartItems.innerHTML = '';
-    if (cart.items.length === 0) {
-      popupCartItems.innerHTML = '<p class="cart__fetch">Cart is empty...</p>';
-    } else {
-      cart.items.forEach(item => {
-        const card = `
-					<div class="card">
-						<div class="cart-item-info">
-							<h4>${item.product_title}</h4>
-							<p>${item.quantity} x ${(item.final_line_price / 100).toFixed(2)} ${cart.currency}</p>
-						</div>
-					</div>
-				`;
-        popupCartItems.insertAdjacentHTML('beforeend', card);
-      });
-    }
-    const subtotal = document.querySelector('.subtotal__price');
-    if (subtotal) {
-      subtotal.textContent = (cart.total_price / 100).toFixed(2) + ' ' + cart.currency;
-    }
-  }
-
-  // 🔹 сторінка корзини
-  const pageCartItems = document.getElementById('pageCartItems');
-  if (pageCartItems) {
-    pageCartItems.innerHTML = '';
-    if (cart.items.length === 0) {
-      pageCartItems.innerHTML = '<p>Your cart is empty.</p>';
-    } else {
-      cart.items.forEach(item => {
-        const row = `
-					<div class="cart-row">
-						<span>${item.product_title}</span>
-						<span>${item.quantity}</span>
-						<span>${(item.final_line_price / 100).toFixed(2)} ${cart.currency}</span>
-					</div>
-				`;
-        pageCartItems.insertAdjacentHTML('beforeend', row);
-      });
-    }
-  }
-}
-
-//////////чекаут кнопк//////////
-document.addEventListener('DOMContentLoaded', () => {
-  const checkoutContainer = document.getElementById('checkout');
-  if (checkoutContainer) {
-    const checkoutBtn = checkoutContainer.querySelector('button');
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', () => {
-        // Переходимо на сторінку оформлення замовлення
-        window.location.href = '/checkout';
-      });
-    }
-  }
-});
-
-/////////////////////////////buy now button///////////////////////
-document.addEventListener('DOMContentLoaded', () => {
-  const buyNowBtn = document.querySelector('.button_standart.buy');
-  if (buyNowBtn) {
-    buyNowBtn.addEventListener('click', async e => {
-      e.preventDefault();
-
-      // шукаємо форму Add to Cart (вона завжди є поруч)
-      const productDetails = buyNowBtn.closest('.product_details');
-      const addToCartForm = productDetails.querySelector('form[id^="product-form-"]');
-      const variantSelect = addToCartForm.querySelector('select[name="id"]');
-      const qtyInput = addToCartForm.querySelector('input[name="quantity"]');
-      const variantId = variantSelect.value;
-      const qty = qtyInput.value;
-      if (!variantId) {
-        alert('Виберіть варіант товару');
-        return;
-      }
-
-      // додаємо товар у корзину
-      const formData = new FormData();
-      formData.append('id', variantId);
-      formData.append('quantity', qty);
-      await fetch('/cart/add.js', {
-        method: 'POST',
-        body: formData
-      });
-
-      // ведемо одразу в checkout
-      window.location.href = '/checkout';
-    });
-  }
-});
-
 /////////////////////////////відкриття попап cart///////////////////////////////
 const cartBtn = document.getElementById('cartBtn');
 const cartImg = document.getElementById('cartImg');
@@ -977,4 +581,6 @@ cartImg.addEventListener('click', openCart);
 cartImgMob.addEventListener('click', openCart);
 cartClose.addEventListener('click', closeCartFunc);
 cartOverlay.addEventListener('click', closeCartFunc);
+
+////
 //# sourceMappingURL=script.js.map

@@ -180,13 +180,10 @@
 			}
 
 			.items_block_pagination {
+				display: grid;
 				gap: 40px;
 				margin-top: 30px;
 			}
-
-
-
-
 		}
 
 
@@ -208,7 +205,54 @@
 }
 
 
+@media (max-width: 480px) {
+	.catalog_main .container .items_block .sort{
+		justify-content: space-between;
+	}
+}
+
+
 @media (max-width: 768px) {
+
+	.catalog_main .items_card{
+		grid-template-columns: repeat(2, 1fr)!important;
+	}
+
+
+	.catalog_main .container .filters_items{
+		padding: 30px 0 0 0 ;
+	}
+
+	.filter-close{
+		display: block!important;
+	}
+
+	.catalog_main .container .filters_items{
+		max-height: calc(100vh - 130px);
+		padding: 30px 0 0 0;
+	}
+
+	.catalog_main .container .filters_wrapper{
+		display: flex;
+		justify-content: center;
+	}
+
+
+
+}
+
+
+@media (max-width: 1199px){
+	.catalog_main .items_card{
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.gift .container .gift_items__right .gift_items__info{
+		padding: 115px 80px 114px 80px;
+	}
+	.container.mod .newsletter_catalog__title{
+		font-size: 35px!important;
+	}
+
 	.catalog_main .container .filters_wrapper {
 		position: fixed; // щоб блок перекривав контент
 		top: 0;
@@ -240,50 +284,24 @@
 		flex: 1;
 		width: 100%;
 	}
-
-	.catalog_main .container .filters_items{
-		padding: 30px 0 0 0 ;
-	}
-
-	.filter-close{
-		display: block!important;
-	}
-
-	.catalog_main .container .filters_items{
-		max-height: calc(100vh - 130px);
-	}
-
 }
 
-
-@media (max-width: 1280px){
-	.catalog_main .items_card{
-		grid-template-columns: repeat(1, 1fr)!important;
-	}
-	.gift .container .gift_items__right .gift_items__info{
-		padding: 115px 80px 114px 80px;
-	}
-	.container.mod .newsletter_catalog__title{
-		font-size: 35px!important;
-	}
-}
-
-
-@media (max-width: 1579px) {
-	.catalog_main .items_card{
-		grid-template-columns: repeat(2, 1fr);
-	}
-	.container.mod .gift_items{
-		display: grid!important;
-	}
-
-	.container.mod .newsletter_catalog__title{
-		font-size: 40px!important;
-	}
-
-	.container.mod{
-		padding: 0 20px 120px 20px!important;
-	}
-
-
-}
+//
+//@media (max-width: 1579px) {
+//	.catalog_main .items_card{
+//		grid-template-columns: repeat(2, 1fr);
+//	}
+//	.container.mod .gift_items{
+//		display: grid!important;
+//	}
+//
+//	.container.mod .newsletter_catalog__title{
+//		font-size: 40px!important;
+//	}
+//
+//	.container.mod{
+//		padding: 0 20px 120px 20px!important;
+//	}
+//
+//
+//}
