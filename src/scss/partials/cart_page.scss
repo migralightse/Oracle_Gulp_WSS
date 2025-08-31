@@ -1,0 +1,195 @@
+.cart_main {
+	background-color: #FFFFFF;
+
+	.container {
+		padding: 140px 0 140px 0;
+		display: flex;
+		gap: 128px;
+		justify-content: center;
+
+		.items{
+			padding-top: 0;
+		}
+
+		.items_info {
+			width: 896px;
+
+			.items_title {
+				color: var(--Black-Primary, #000);
+
+				/* H2 - Desktop */
+				font-family: 'Poppins', sans-serif;
+				font-size: 48px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: 64px; /* 133.333% */
+				letter-spacing: 0.96px;
+				margin-bottom: 40px;
+			}
+
+			.items_details {
+
+				.items_details__title {
+					color: var(--Black-Primary, #000);
+					font-family: 'Poppins', sans-serif;
+					font-size: 24px;
+					font-style: normal;
+					font-weight: 600;
+					line-height: 26px; /* 108.333% */
+					margin-bottom: 40px;
+
+				}
+
+				.items_details__markup {
+					display: flex;
+					//justify-content: space-between;
+					align-items: center;
+					padding-bottom: 40px;
+					border-bottom: 1px solid #999;
+
+					h4:first-child {
+						margin-right: auto; // "Product" зліва
+					}
+					h4:nth-child(2) {
+						margin-right: 180px; // контролює відстань між Quantity і Subtotal
+					}
+
+					h4 {
+						color: var(--Black-Primary, #000);
+						text-align: center;
+						font-family: 'Poppins', sans-serif;
+						font-size: 16px;
+						font-style: normal;
+						font-weight: 300;
+						line-height: 24px; /* 150% */
+						letter-spacing: 0.32px;
+					}
+
+				}
+
+				.items_card.cart{
+					padding: 40px 0;
+					display: flex;
+
+
+					.card_image.cart{
+						width: 200px;
+					}
+
+
+					.card{
+						align-items: center;
+						margin-bottom: 0;
+					}
+
+					.cart-item-info{
+						display: flex;
+						justify-content: space-between;
+					}
+
+					.cart-item_wrapper{
+						display: grid;
+						gap: 10px;
+					}
+
+
+					.quantity_wrapper{
+						display: flex;
+						gap: 16px;
+						align-items: center;
+					}
+					.price_wrapper{
+						display: flex;
+						align-items: center;
+					}
+				}
+			}
+
+			.btn_continue{
+				color: var(--Black-Primary, #000);
+				font-family: 'Poppins', sans-serif;
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 24px; /* 150% */
+				letter-spacing: 0.32px;
+				text-decoration-line: underline;
+				text-decoration-style: solid;
+				text-decoration-skip-ink: none;
+				text-decoration-thickness: auto;
+				text-underline-offset: auto;
+				text-underline-position: from-font;
+			}
+		}
+
+		.order_summary {
+			width: 482px;
+
+			.order_wrapper{
+				display: grid;
+				gap: 40px;
+				.order_summary__title {
+					color: var(--Black-Primary, #000);
+					font-family: 'Poppins', sans-serif;
+					font-size: 24px;
+					font-style: normal;
+					font-weight: 600;
+					line-height: 26px; /* 108.333% */
+				}
+				h4{
+					color: var(--Black-Primary, #000);
+					/* Paragraph-2 */
+					font-family: 'Poppins', sans-serif;
+					font-size: 16px;
+					font-style: normal;
+					font-weight: 300;
+					line-height: 24px; /* 150% */
+					letter-spacing: 0.32px;
+				}
+				.order_summary__comment-box textarea {
+					width: 100%;
+					height: 200px;
+					min-height: 120px;        // висота як у прикладі
+					padding: 16px;
+					border: 1px solid var(--Grey, #999);
+					border-radius: 2px;
+					resize: none;
+					outline: none;
+
+					color: var(--Grey, #999);
+
+					font-family: "Poppins",sans-serif;
+					font-size: 16px;
+					font-style: normal;
+					font-weight: 300;
+					line-height: 24px; /* 150% */
+					letter-spacing: 0.32px;
+				}
+
+				.order_summary__comment-box textarea:focus {
+					border-color: #999;       // при фокусі темніша рамка
+				}
+
+				.subtotal{
+					margin-bottom: 0;
+				}
+				.button_standart.check{
+					margin-bottom: 0;
+				}
+			}
+
+
+			.tax-note {
+				color: var(--Black-Primary, #000);
+				font-family: "Poppins",sans-serif;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: 300;
+				line-height: 22px;
+				letter-spacing: .28px;
+				margin-top: 20px;
+			}
+
+		}
+	}
+}
