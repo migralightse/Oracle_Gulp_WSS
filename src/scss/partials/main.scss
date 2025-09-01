@@ -130,6 +130,12 @@
 
 
 
+
+
+
+
+
+
 @media (max-width: 1023px) {
 	.main .container .main_banner .banner_title{
 		color: var(--White, #FFF);
@@ -144,15 +150,21 @@
 		letter-spacing: 0.64px;
 	}
 }
-
 @media (max-width: 768px) {
 	.main .container .main_banner .banner_title{
 		font-size: 32px;
 	}
 
-}
+	.main .container .items{
+		padding-top: 80px;
+	}
 
+}
 @media (max-width: 575px) {
+
+	.main .container .items{
+		padding-top: 30px;
+	}
 	.main .container .main_banner .banner_title{
 		font-size: 32px;
 		white-space: normal; // ✅ дозволяє переносити
