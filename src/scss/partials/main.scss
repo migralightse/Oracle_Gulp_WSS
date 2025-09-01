@@ -128,15 +128,7 @@
 
 
 
-
-
-
-
-
-
-
-
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
 	.main .container .main_banner .banner_title{
 		color: var(--White, #FFF);
 		text-align: center;
@@ -149,6 +141,10 @@
 		line-height: 40px; /* 125% */
 		letter-spacing: 0.64px;
 	}
+
+	.main .container .items{
+		padding-top: 80px;
+	}
 }
 @media (max-width: 768px) {
 	.main .container .main_banner .banner_title{
@@ -156,7 +152,11 @@
 	}
 
 	.main .container .items{
-		padding-top: 80px;
+		padding-top: 60px;
+	}
+
+	.main .container .items .items_title{
+		font-size: 38px;
 	}
 
 }

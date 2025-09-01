@@ -118,6 +118,24 @@
 	}
 }
 
+@media (max-width: 1199px) {
+	.blog .container{
+		padding-bottom: 80px;
+	}
+}
+
+
+@media (max-width: 768px) {
+	.blog .container .blog__title{
+		font-size: 38px;
+	}
+
+	.blog .container{
+		padding-bottom: 60px;
+	}
+}
+
+
 @media (max-width: 575px) {
 	.blog .container .blog__title {
 		color: var(--Black-Primary, #000);

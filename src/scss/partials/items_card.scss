@@ -103,7 +103,7 @@
 
 	.items_main {
 		display: grid !important;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(4, 1fr);
 
 		gap: 15px !important;
 
@@ -114,6 +114,12 @@
 	.items_main .card .card_image {
 		max-width: 354px;
 	}
+}
+
+@media (max-width: 1199px) {
+	.items_main {
+		grid-template-columns: repeat(2, 1fr);
+		}
 }
 
 

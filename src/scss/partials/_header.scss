@@ -450,7 +450,7 @@
 }
 
 
-@media (max-width: 1280px) {
+@media (max-width: 1199px) {
 	.header__bottom {
 		justify-content: center;
 		padding: 32px 80px;
@@ -461,7 +461,7 @@
 		display: block;
 		width: 30px;
 		height: 22.5px;
-		left: 25px;
+		height: 22.5px;
 		top: 35px;
 
 		.bar {
@@ -496,7 +496,7 @@
 	.header .header_right .header_nav {
 		position: absolute;
 		top: 3px;
-		right: -65px;
+		right: -73px;
 	}
 
 	.mobile-submenu__list {

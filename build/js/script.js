@@ -582,5 +582,24 @@ cartImgMob.addEventListener('click', openCart);
 cartClose.addEventListener('click', closeCartFunc);
 cartOverlay.addEventListener('click', closeCartFunc);
 
-////
+//////////cart_pop quantity///////
+document.addEventListener("DOMContentLoaded", () => {
+  const quantityControls = document.querySelectorAll(".quantity-control");
+  quantityControls.forEach(control => {
+    const buttons = control.querySelectorAll(".qty-btn");
+    const minusBtn = buttons[0]; // перша кнопка
+    const plusBtn = buttons[1]; // друга кнопка
+    const valueEl = control.querySelector(".qty-value");
+    minusBtn.addEventListener("click", () => {
+      let current = parseInt(valueEl.textContent, 10);
+      if (current > 1) {
+        valueEl.textContent = current - 1;
+      }
+    });
+    plusBtn.addEventListener("click", () => {
+      let current = parseInt(valueEl.textContent, 10);
+      valueEl.textContent = current + 1;
+    });
+  });
+});
 //# sourceMappingURL=script.js.map

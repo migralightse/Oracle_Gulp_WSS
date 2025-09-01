@@ -128,7 +128,7 @@
 
 
 
-@media (max-width: 1280px) {
+@media (max-width: 1199px) {
 
 	.jewelry_collection .container .jewelry_collection__title{
 		font-size: 48px;
@@ -152,8 +152,29 @@
 	.jewelry_collection .container .jewelry_collection__gallery .jewelry_collection__gallery-right{
 		gap: 15px;
 	}
+
+	.jewelry_collection .container{
+		padding: 80px 15px 80px 15px;
+	}
+	.jewelry_collection .container .jewelry_collection__title{
+		padding: 0 0 80px 0;
+	}
 }
 
+@media (max-width: 768px){
+	.jewelry_collection .container{
+		padding: 60px 15px 60px 15px;
+	}
+
+	.jewelry_collection .container .jewelry_collection__title{
+		padding: 0 0 60px 0;
+	}
+	.jewelry_collection .container .jewelry_collection__title{
+		font-size: 38px;
+		line-height: 60px;
+	}
+
+}
 
 @media (max-width: 575px) {
 	.jewelry_collection .container{
