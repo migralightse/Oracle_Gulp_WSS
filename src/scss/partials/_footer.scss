@@ -82,7 +82,7 @@
 	&__bottom {
 		display: flex;
 		justify-content: center;
-		gap: 175px;
+		gap: 137px;
 		border-top: 1px solid #eee;
 		padding-top: 30px;
 
@@ -140,6 +140,17 @@
 
 	}
 }
+
+
+.footer__selects{
+	.select2-container{
+		width: 210px!important;
+	}
+	.select2-container--default .select2-selection--single .select2-selection__rendered{
+		font-size: 14px!important;
+	}
+}
+
 
 @media (max-width: 575px) {
 	.footer{

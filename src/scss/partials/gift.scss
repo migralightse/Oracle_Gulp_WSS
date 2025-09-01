@@ -8,9 +8,10 @@
 
 		.gift_items__left {
 			display: grid;
+			background: #F9F9F9;
 
 			.gift_items__image__mod {
-				width: 753px;
+
 				height: 493px;
 				background-image: url('../img/gift1_fon_img.jpg');
 				background-size: cover;
@@ -30,7 +31,6 @@
 			}
 
 			.gift_items__image {
-				width: 753px;
 				height: 493px;
 
 				img {
@@ -106,9 +106,8 @@
 
 		.gift_items__right {
 			display: grid;
-
+			background: #F9F9F9;
 			.gift_items__image {
-				width: 753px;
 				height: 493px;
 
 
@@ -344,7 +343,7 @@
 }
 
 
-@media (max-width: 1023px) {
+@media (max-width: 1199px) {
 	.gift .container{
 		display: grid;
 		padding: 80px 15px 0 15px;
@@ -352,9 +351,16 @@
 	}
 
 	.gift .container .gift_items__left .gift_items__image{
-		width: auto;
+		width: 100%;
 		height: 350px;
 	}
+
+
+	.gift .container .gift_items__left .gift_items__image__mod{
+		width: 100% !important;
+	}
+
+
 	.gift .container .gift_items__left .gift_items__info .gift_items__title{
 		color: var(--Black-Primary, #000);
 
@@ -409,7 +415,7 @@
 	}
 
 	.gift .container .gift_items__right .gift_items__image{
-		width: auto;
+		width: 100% !important;
 		height: 350px;
 	}
 
@@ -449,4 +455,18 @@
 		padding: 14px 15px;
 	}
 
+
+}
+
+
+@media (max-width: 1440px) {
+	//.gift .container .gift_items__left .gift_items__image{
+	//	max-width: 753px;
+	//}
+}
+
+@media (max-width: 1580px) {
+	.gift .container{
+		padding: 120px 20px 120px 20px;
+	}
 }
