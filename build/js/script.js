@@ -409,13 +409,13 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         filterWrapper.classList.add('active');
         overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('scroll-lock'); // додаємо клас
       }
     });
     const closeFilters = () => {
       filterWrapper.classList.remove('active');
       overlay.classList.remove('active');
-      document.body.style.overflow = '';
+      document.body.classList.remove('scroll-lock'); // прибираємо клас
     };
     closeBtn.addEventListener('click', closeFilters);
     overlay.addEventListener('click', closeFilters);
