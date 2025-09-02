@@ -2,7 +2,7 @@
 	display: grid;
 	align-items: center;
 	gap: 120px;
-	padding: 0 0 120px 0;
+	padding: 0 15px 120px 15px;
 
 	.newsletter_catalog__title{
 		color: var(--Black-Primary, #000);
@@ -18,10 +18,51 @@
 
 	.gift_items{
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
+
+		.gift_items__left{
+			width: 50%;
+		}
+
+		.gift_items__right{
+			width: 50%;
+		}
 	}
 
 	.gift_items__info__mod-input{
-		width: 753px;
+		max-width: 753px;
+	}
+}
+
+
+
+@media (max-width: 1199px){
+	.container.mod {
+		padding: 0 15px 80px 15px;
+	}
+}
+
+
+@media (max-width: 768px){
+	.container.mod {
+		padding: 0 15px 60px 15px;
+		.gift_items{
+			display: grid;
+			justify-content: normal;
+			.gift_items__left{
+				width: 100%;
+			}
+			.gift_items__right{
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media (max-width: 575px){
+	.container.mod {
+		padding: 0 15px 30px 15px;
+
+
 	}
 }

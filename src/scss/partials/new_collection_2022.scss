@@ -60,6 +60,11 @@
 	}
 }
 
+@media (max-width: 1199px) {
+	.new_collection_banner .container .new_collection_banner__title{
+		font-size: 50px;
+	}
+}
 
 @media (max-width: 575px) {
 
@@ -94,9 +99,4 @@
 }
 
 
-@media (max-width: 1023px) {
-	.new_collection_banner .container .new_collection_banner__title{
-		font-size: 50px;
-	}
-}
 
