@@ -366,89 +366,125 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 
 ////////////////фільтри анімація//////////////////////////////////////////////////
-document.addEventListener( 'DOMContentLoaded', () => {
-	const filters = document.querySelector( '.filters_items' );
-	const itemsBlock = document.querySelector( '.items_block' );
-	const wrapper = document.querySelector( '.filters_wrapper' );
+document.addEventListener('DOMContentLoaded', () => {
+	let scrollHandler;
 
-	if (!filters || !itemsBlock || !wrapper) return;
+	function initFiltersSticky() {
+		const filters = document.querySelector('.filters_items');
+		const itemsBlock = document.querySelector('.items_block');
+		const wrapper = document.querySelector('.filters_wrapper');
 
-	const stickyOffset = window.innerWidth < 768 ? 40 : 141;
-	const  stopOffset = window.innerWidth < 768 ? 40 : 190;
-	const hysteresis = 10; // буферна зона, щоб уникнути дьоргання
-
-	let isStuck = false;
-	let isAtBottom = false;
-
-	let lastScrollY = window.scrollY;
-
-	window.addEventListener( 'scroll', () => {
-		const currentScrollY = window.scrollY;
-		const deltaY = Math.abs( currentScrollY - lastScrollY );
-
-		// Ігноруємо дрібні прокручування менше hysteresis
-		if (deltaY < hysteresis) return;
-
-		lastScrollY = currentScrollY;
-
-		const containerTop = wrapper.getBoundingClientRect().top;
-		const itemsBottom = itemsBlock.getBoundingClientRect().bottom;
-		const filtersHeight = filters.offsetHeight;
-
-		// Зупинка знизу
-		if (!isAtBottom && itemsBottom <= filtersHeight + stopOffset) {
-			isAtBottom = true;
-			isStuck = false;
-			filters.style.position = 'absolute';
-			filters.style.top = 'auto';
-			filters.style.bottom = '60px';
-			filters.classList.remove( 'filters-sticky' );
-			filters.classList.add( 'filters-bottom' );
+		// Прибираємо старий хендлер якщо є
+		if (scrollHandler) {
+			window.removeEventListener('scroll', scrollHandler);
+			scrollHandler = null;
 		}
 
-		// Фіксація вгорі
-		else if (!isStuck && containerTop <= stickyOffset && itemsBottom > filtersHeight + stopOffset + hysteresis) {
-			isStuck = true;
-			isAtBottom = false;
-			filters.style.position = 'fixed';
-			filters.style.top = `${stickyOffset}px`;
-			filters.style.bottom = 'auto';
-			filters.classList.add( 'filters-sticky' );
-			filters.classList.remove( 'filters-bottom' );
+		// Працюємо тільки на екранах >1199px
+		if (window.innerWidth <= 1199 || !filters || !itemsBlock || !wrapper) {
+			// Скидаємо стилі якщо були
+			filters?.removeAttribute('style');
+			filters?.classList.remove('filters-sticky', 'filters-bottom');
+			return;
 		}
 
-		// Повернення в звичайний стан
-		else if (containerTop > stickyOffset + hysteresis) {
-			isStuck = false;
-			isAtBottom = false;
-			filters.style.position = 'static';
-			filters.style.top = '';
-			filters.style.bottom = '';
-			filters.classList.remove( 'filters-sticky', 'filters-bottom' );
-		}
-	} );
-} );
+		const stickyOffset = window.innerWidth < 768 ? 40 : 141;
+		const stopOffset = window.innerWidth < 768 ? 40 : 190;
+		const hysteresis = 10;
+
+		let isStuck = false;
+		let isAtBottom = false;
+		let lastScrollY = window.scrollY;
+
+		scrollHandler = () => {
+			const currentScrollY = window.scrollY;
+			const deltaY = Math.abs(currentScrollY - lastScrollY);
+
+			if (deltaY < hysteresis) return;
+
+			lastScrollY = currentScrollY;
+
+			const containerTop = wrapper.getBoundingClientRect().top;
+			const itemsBottom = itemsBlock.getBoundingClientRect().bottom;
+			const filtersHeight = filters.offsetHeight;
+
+			// Зупинка знизу
+			if (!isAtBottom && itemsBottom <= filtersHeight + stopOffset) {
+				isAtBottom = true;
+				isStuck = false;
+				filters.style.position = 'absolute';
+				filters.style.top = 'auto';
+				filters.style.bottom = '60px';
+				filters.classList.remove('filters-sticky');
+				filters.classList.add('filters-bottom');
+			}
+
+			// Фіксація вгорі
+			else if (
+				!isStuck &&
+				containerTop <= stickyOffset &&
+				itemsBottom > filtersHeight + stopOffset + hysteresis
+			) {
+				isStuck = true;
+				isAtBottom = false;
+				filters.style.position = 'fixed';
+				filters.style.top = `${stickyOffset}px`;
+				filters.style.bottom = 'auto';
+				filters.classList.add('filters-sticky');
+				filters.classList.remove('filters-bottom');
+			}
+
+			// Повернення в звичайний стан
+			else if (containerTop > stickyOffset + hysteresis) {
+				isStuck = false;
+				isAtBottom = false;
+				filters.style.position = 'static';
+				filters.style.top = '';
+				filters.style.bottom = '';
+				filters.classList.remove('filters-sticky', 'filters-bottom');
+			}
+		};
+
+		window.addEventListener('scroll', scrollHandler);
+	}
+
+	// Запускаємо один раз
+	initFiltersSticky();
+
+	// Запускаємо ще раз при зміні розміру
+	window.addEventListener('resize', initFiltersSticky);
+});
+
 
 
 //////////фільтри моб анімація виїзду ////////////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
 	const filterWrapper = document.querySelector('.filters_wrapper');
 	const openBtn = document.getElementById('open-filters'); // кнопка відкриття
-	const closeBtn = document.querySelector('.filter-close'); // твоя кнопка закриття
+	const closeBtn = document.querySelector('.filter-close'); // кнопка закриття
+	const overlay = document.getElementById('overlay'); // overlay
 
-	if (openBtn && filterWrapper && closeBtn) {
+	if (openBtn && filterWrapper && closeBtn && overlay) {
 		openBtn.addEventListener('click', (e) => {
-			e.preventDefault();
-			filterWrapper.classList.add('active');
-			document.body.style.overflow = 'hidden'; // блокуєм скрол
+			if (window.innerWidth < 1199) { // тільки для моб/планшетів
+				e.preventDefault();
+				filterWrapper.classList.add('active');
+				overlay.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			}
 		});
 
-		closeBtn.addEventListener('click', () => {
+		const closeFilters = () => {
 			filterWrapper.classList.remove('active');
-			document.body.style.overflow = ''; // повертаєм скрол
-		});
+			overlay.classList.remove('active');
+			document.body.style.overflow = '';
+		};
+
+		closeBtn.addEventListener('click', closeFilters);
+		overlay.addEventListener('click', closeFilters);
 	}
 });
+
 
 
 

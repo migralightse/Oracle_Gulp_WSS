@@ -7,6 +7,22 @@
 		justify-content: center;
 		gap: 60px;
 
+		.overlay {
+			position: fixed;
+			inset: 0;
+			right: 0px;
+			background: rgba(0,0,0,.4);
+			opacity: 0;
+			visibility: hidden;
+			transition: .3s ease-in-out;
+			z-index: 998;
+			cursor: pointer;
+		}
+		.overlay.active {
+			opacity: 1;
+			visibility: visible;
+		}
+
 		.filters_wrapper {
 			position: relative;
 			width: 324px; // або стільки ж, скільки у filters_items
@@ -157,6 +173,12 @@
 				.list_cube {
 					display: flex;
 					gap: 20px;
+					align-items: center;
+
+					.list_filter{
+						width: 24px;
+						height: 30px;
+					}
 				}
 			}
 
@@ -211,6 +233,24 @@
 
 
 @media (max-width: 1199px){
+
+	.catalog_main .container .filters_items{
+		width: 100%;
+	}
+	.catalog_main .container .filters_items{
+		max-height: calc(100vh - 30px);
+	}
+
+
+	.filter-close {
+		display: block !important;
+	}
+
+	.catalog_main .container .filters_wrapper {
+		display: flex;
+		justify-content: start;
+		padding: 30px;
+	}
 	.container.mod{
 		gap: 80px!important;
 	}
@@ -232,7 +272,7 @@
 		top: 0;
 		left: 0;
 		height: 100%;
-		width: 100%; // або 100% якщо хочеш на весь екран
+		width: 42%;
 		background: #fff;
 		z-index: 2000;
 
@@ -260,6 +300,11 @@
 	}
 }
 @media (max-width: 768px) {
+
+	.catalog_main .container .filters_wrapper {
+		width: 88%;
+	}
+
 	.container.mod{
 		gap: 60px!important;
 	}
@@ -276,28 +321,14 @@
 		grid-template-columns: repeat(2, 1fr)!important;
 	}
 
-
-	.catalog_main .container .filters_items{
-		padding: 30px 0 0 0 ;
-	}
-
 	.filter-close{
 		display: block!important;
 	}
 
-	.catalog_main .container .filters_items{
-		max-height: calc(100vh - 130px);
-		padding: 30px 0 0 0;
-	}
-
-	.catalog_main .container .filters_wrapper{
-		display: flex;
-		justify-content: center;
-	}
-
-
 
 }
+
+
 @media (max-width: 480px) {
 	.catalog_main .container .items_block .sort{
 		justify-content: space-between;
