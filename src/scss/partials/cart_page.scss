@@ -2,12 +2,12 @@
 	background-color: #FFFFFF;
 
 	.container {
-		padding: 140px 0 140px 0;
+		padding: 140px 15px 140px 15px;
 		display: flex;
 		gap: 128px;
 		justify-content: center;
 
-		.items{
+		.cart_items {
 			padding-top: 0;
 		}
 
@@ -42,14 +42,15 @@
 
 				.items_details__markup {
 					display: flex;
-					//justify-content: space-between;
 					align-items: center;
 					padding-bottom: 40px;
+					margin-bottom: 40px;
 					border-bottom: 1px solid #999;
 
 					h4:first-child {
 						margin-right: auto; // "Product" зліва
 					}
+
 					h4:nth-child(2) {
 						margin-right: 180px; // контролює відстань між Quantity і Subtotal
 					}
@@ -67,45 +68,50 @@
 
 				}
 
-				.items_card.cart{
-					padding: 40px 0;
+				.cart_items {
+					display: grid;
+					gap: 40px;
+				}
+
+				.items_card.cart {
 					display: flex;
 
 
-					.card_image.cart{
+					.card_image.cart {
 						width: 200px;
 					}
 
 
-					.card{
+					.card {
 						align-items: center;
 						margin-bottom: 0;
 					}
 
-					.cart-item-info{
+					.cart-item-info {
 						display: flex;
 						justify-content: space-between;
 					}
 
-					.cart-item_wrapper{
+					.cart-item_wrapper {
 						display: grid;
 						gap: 10px;
 					}
 
 
-					.quantity_wrapper{
+					.quantity_wrapper {
 						display: flex;
 						gap: 16px;
 						align-items: center;
 					}
-					.price_wrapper{
+
+					.price_wrapper {
 						display: flex;
 						align-items: center;
 					}
 				}
 			}
 
-			.btn_continue{
+			.btn_continue {
 				color: var(--Black-Primary, #000);
 				font-family: 'Poppins', sans-serif;
 				font-size: 16px;
@@ -125,9 +131,10 @@
 		.order_summary {
 			width: 482px;
 
-			.order_wrapper{
+			.order_wrapper {
 				display: grid;
 				gap: 40px;
+
 				.order_summary__title {
 					color: var(--Black-Primary, #000);
 					font-family: 'Poppins', sans-serif;
@@ -136,7 +143,8 @@
 					font-weight: 600;
 					line-height: 26px; /* 108.333% */
 				}
-				h4{
+
+				h4 {
 					color: var(--Black-Primary, #000);
 					/* Paragraph-2 */
 					font-family: 'Poppins', sans-serif;
@@ -146,10 +154,11 @@
 					line-height: 24px; /* 150% */
 					letter-spacing: 0.32px;
 				}
+
 				.order_summary__comment-box textarea {
 					width: 100%;
 					height: 200px;
-					min-height: 120px;        // висота як у прикладі
+					min-height: 120px; // висота як у прикладі
 					padding: 16px;
 					border: 1px solid var(--Grey, #999);
 					border-radius: 2px;
@@ -158,7 +167,7 @@
 
 					color: var(--Grey, #999);
 
-					font-family: "Poppins",sans-serif;
+					font-family: "Poppins", sans-serif;
 					font-size: 16px;
 					font-style: normal;
 					font-weight: 300;
@@ -167,13 +176,14 @@
 				}
 
 				.order_summary__comment-box textarea:focus {
-					border-color: #999;       // при фокусі темніша рамка
+					border-color: #999; // при фокусі темніша рамка
 				}
 
-				.subtotal{
+				.subtotal {
 					margin-bottom: 0;
 				}
-				.button_standart.check{
+
+				.button_standart.check {
 					margin-bottom: 0;
 				}
 			}
@@ -181,7 +191,7 @@
 
 			.tax-note {
 				color: var(--Black-Primary, #000);
-				font-family: "Poppins",sans-serif;
+				font-family: "Poppins", sans-serif;
 				font-size: 14px;
 				font-style: normal;
 				font-weight: 300;
@@ -191,5 +201,113 @@
 			}
 
 		}
+	}
+}
+
+
+@media (max-width: 1480px) {
+	.cart_main .container {
+		gap: 50px;
+	}
+}
+
+@media (max-width: 1199px) {
+	.cart_main .container {
+		padding: 120px 15px 80px 15px;
+	}
+
+	.cart_main .container {
+		display: grid;
+		gap: 30px;
+		justify-content: normal;
+	}
+	.cart_main .container .items_info {
+		width: 100%;
+	}
+	.cart_main .container .items_info .items_title {
+		margin-bottom: 30px;
+		font-size: 42px;
+	}
+	.cart_main .container .items_info .items_details .items_details__title {
+		margin-bottom: 30px;
+	}
+	.cart_main .container .items_info .items_details .items_details__markup {
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+	}
+	.cart_main .container .items_info .items_details .cart_items {
+		gap: 30px;
+	}
+
+	.cart_main .container .order_summary {
+		width: 100%;
+	}
+	.cart_main .container .order_summary .order_wrapper {
+		gap: 30px;
+	}
+
+
+}
+
+@media (max-width: 768px) {
+
+	.cart_main .container .items_info .items_details .items_card.cart .cart-item_wrapper {
+		display: grid;
+		justify-content: center;
+	}
+	.cart_main .cart_items .items_card.cart .card .card_image {
+		width: 30% !important;
+	}
+	//.cart_items .items_card.cart .card .cart-item-info .cart-item__title {
+	//	margin-bottom: 10px;
+	//}
+	//.cart_items .items_card.cart .card .cart-item-info .product_det{
+	//	margin-bottom: 10px;
+	//}
+}
+
+@media (max-width: 580px){
+	.cart_main .container .items_info .items_details .items_card.cart .cart-item_wrapper{
+		display: none;
+	}
+	.cart_main .cart_items .items_card.cart .card .card_image {
+		width: 50% !important;
+	}
+}
+
+@media (max-width: 480px){
+	.cart_main .container .items_info .items_details .items_details__markup h4:nth-child(2) {
+		margin-right: 75px;
+	}
+	.cart_main .container{
+		padding: 80px 15px 30px 15px;
+	}
+	.cart_main .container .items_info .items_title{
+		margin-bottom: 15px;
+		font-size: 32px;
+	}
+	.cart_main .container .items_info .items_details .items_details__title {
+		margin-bottom: 15px;
+		font-size: 20px;
+	}
+	.cart_main .container .items_info .items_details .items_details__markup{
+		margin-bottom: 15px;
+		padding-bottom: 15px;
+	}
+	.cart_main .container .items_info .items_details .items_details__markup h4{
+		font-size: 14px;
+	}
+	.cart_main .container .items_info .items_details .cart_items {
+		gap: 15px;
+	}
+	.cart_main .container .items_info .btn_continue{
+		font-size: 14px;
+	}
+	.cart_main .container{
+		gap: 15px;
+	}
+	.cart_main .container .order_summary .order_wrapper{
+		gap: 15px;
+
 	}
 }

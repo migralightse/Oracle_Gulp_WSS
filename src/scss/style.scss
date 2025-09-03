@@ -453,7 +453,7 @@ a{
 
 
 ///////cart items //////
-.cart-sidebar{
+.cart-sidebar, .cart_items {
 	.items_card__wrapper{
 		overflow-x: hidden;
 		padding: 40px 40px 40px 40px;
@@ -526,7 +526,6 @@ a{
 					gap: 5px ;
 					.product__name{
 						color: var(--Dark-Grey-Secondary, #6E7172);
-						text-align: center;
 						font-family: 'Poppins', sans-serif;
 						font-size: 14px;
 						font-style: normal;
