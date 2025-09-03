@@ -17,9 +17,6 @@
 <!-- Стилі -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<!-- Скрипт Swiper -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 <!-- Слайдер фільтрів колекції -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
 <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
@@ -726,11 +723,14 @@
 				<div class="subtotal__price">$224.00</div>
 			</div>
 			<div class="material_menu active">
-				<label class="custom-checkbox ch">
-					<input type="checkbox" />
-					<span class="checkmark"></span>
-					<h2 class="custom-checkbox_title">Please check this box to agree to our terms and conditions</h2>
-				</label>
+				<div class="custom-checkbox ch">
+					<input type="checkbox" id="agree">
+					<label for="agree" class="checkmark"></label>
+					<label for="agree" class="custom-checkbox_title">
+						Please check this box to agree to our terms and conditions
+					</label>
+				</div>
+
 			</div>
 			<div class="gift_items__button">
 				<button class="button_standart check">Checkout</button>
