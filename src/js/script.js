@@ -224,7 +224,6 @@ window.addEventListener( 'load', () => {
 	if (!wrapper) return;
 
 	const button = wrapper.querySelector( '.shop-now' );
-
 	if (button) {
 		const buttonWidth = button.offsetWidth;
 		wrapper.style.width = `${buttonWidth}px`;
