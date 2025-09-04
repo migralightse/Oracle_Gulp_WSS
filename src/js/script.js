@@ -85,35 +85,33 @@ function initBlogSwiper() {
 
 	if (screenWidth < 1580 && !swiperInstance) {
 		// Ініціалізація Swiper
-		swiperInstance = new Swiper( '.blog__posts.swiper', {
+		swiperInstance = new Swiper('.blog__posts.swiper', {
 			slidesPerView: 'auto',
 			spaceBetween: 10,
 			slidesOffsetBefore: 15,
 			slidesOffsetAfter: 15
-		} );
+		});
 	} else if (screenWidth >= 1580 && swiperInstance) {
 		// Видаляємо Swiper
-		swiperInstance.destroy( true, true );
+		swiperInstance.destroy(true, true);
 		swiperInstance = null;
 
-		// ✅ Відновлюємо початкові стилі
-		const wrapper = document.querySelector( '.blog__posts .swiper-wrapper' );
-		const slides = document.querySelectorAll( '.blog__posts .swiper-slide' );
+		// ✅ Лишаємо класи, але прибираємо інлайнові стилі
+		const wrapper = document.querySelector('.blog__posts .swiper-wrapper');
+		const slides = document.querySelectorAll('.blog__posts .swiper-slide');
 
 		if (wrapper) {
-			wrapper.removeAttribute( 'style' );
-			wrapper.classList.remove( 'swiper-wrapper' ); // не обов'язково, але можна
+			wrapper.removeAttribute('style');
 		}
 
-		slides.forEach( slide => {
-			slide.removeAttribute( 'style' );
-			slide.classList.remove( 'swiper-slide' ); // не обов'язково, але можна
-		} );
+		slides.forEach(slide => {
+			slide.removeAttribute('style');
+		});
 	}
 }
 
-window.addEventListener( 'load', initBlogSwiper );
-window.addEventListener( 'resize', initBlogSwiper );
+window.addEventListener('load', initBlogSwiper);
+window.addEventListener('resize', initBlogSwiper);
 
 
 //////////////////////////header_menu//////////////////////////

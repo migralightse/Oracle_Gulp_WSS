@@ -449,6 +449,12 @@
 	background-color: black !important;
 }
 
+@media (max-width: 1440px){
+	.header__bottom{
+		justify-content: space-between;
+		padding: 32px 15px 30px 15px;
+	}
+}
 
 @media (max-width: 1199px) {
 

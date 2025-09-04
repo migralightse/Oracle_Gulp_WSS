@@ -83,16 +83,14 @@ function initBlogSwiper() {
     swiperInstance.destroy(true, true);
     swiperInstance = null;
 
-    // ✅ Відновлюємо початкові стилі
+    // ✅ Лишаємо класи, але прибираємо інлайнові стилі
     const wrapper = document.querySelector('.blog__posts .swiper-wrapper');
     const slides = document.querySelectorAll('.blog__posts .swiper-slide');
     if (wrapper) {
       wrapper.removeAttribute('style');
-      wrapper.classList.remove('swiper-wrapper'); // не обов'язково, але можна
     }
     slides.forEach(slide => {
       slide.removeAttribute('style');
-      slide.classList.remove('swiper-slide'); // не обов'язково, але можна
     });
   }
 }
