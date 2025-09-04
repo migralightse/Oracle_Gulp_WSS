@@ -34,8 +34,9 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 79px 40px 31px 40px;
+		padding: 79px 25px 31px 25px;
 		border-bottom: 1px solid #ddd;
+		margin: 0 15px;
 
 		h2 {
 			color: var(--Black-Primary, #000);
@@ -130,7 +131,7 @@
 		padding: 31px 15px 33px 40px!important;
 	}
 	.cart-sidebar .cart-header {
-		padding: 79px 15px 33px 40px!important;
+		padding: 79px 0px 33px 25px!important;
 	}
 	.cart-sidebar .items_card__wrapper {
 		padding: 40px 15px 40px 40px!important;
@@ -193,7 +194,7 @@
 		padding: 31px 15px 33px 40px!important;
 	}
 	.cart-sidebar .cart-header {
-		padding: 40px 15px 15px 15px!important;
+		padding: 40px 0 15px 0!important;
 	}
 	body.scrolled .cart-sidebar .cart-header{
 		padding: 15px!important;
